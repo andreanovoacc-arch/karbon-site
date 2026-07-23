@@ -1,0 +1,3592 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KARBÓN — Carnicería Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b0a09;
+        --bg2: #12100e;
+        --panel: #171412;
+        --panel2: #1e1a16;
+        --stone: #151311;
+        --line: #2a2521;
+        --line2: #3a332c;
+        --wood: #3b2a1d;
+        --wood2: #4a3423;
+        --wood3: #2b1f15;
+        --text: #eee9e1;
+        --muted: #a1968a;
+        --dim: #6e655a;
+        --steel1: #f2f2f0;
+        --steel2: #c8c7c4;
+        --steel3: #8e8c88;
+        --steel4: #5f5d5a;
+        --amber: #c98a3d;
+        --amber2: #a86f2c;
+        --red: #a03530;
+        --red2: #7f2723;
+        --green: #5fb878;
+        --gold: #d2a75c;
+        --sans: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --disp: "Archivo", "Arial Narrow", Impact, Helvetica, Arial, sans-serif;
+        --r: 12px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      html,
+      body {
+        overflow-x: clip;
+      }
+      :focus-visible {
+        outline: 2px solid var(--amber);
+        outline-offset: 2px;
+      }
+      body {
+        background: radial-gradient(1200px 500px at 70% -200px, rgba(201, 138, 61, 0.06), transparent 60%), var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 15px;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      ::selection {
+        background: var(--red);
+        color: #fff;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+      input,
+      select {
+        font-family: inherit;
+      }
+      .steel {
+        background: linear-gradient(178deg, var(--steel1) 8%, var(--steel2) 38%, var(--steel3) 62%, var(--steel4) 88%, #bdbcb9 99%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .disp {
+        font-family: var(--disp);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 800;
+      } /* ============ TOP UTILITY BAR ============ */
+      .topbar {
+        background: #080706;
+        border-bottom: 1px solid var(--line);
+        font-size: 12.5px;
+      }
+      .topbar .in {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .topbar .in::-webkit-scrollbar {
+        display: none;
+      }
+      .topbar button {
+        white-space: nowrap;
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        color: var(--muted);
+        padding: 4px 11px;
+        font-size: 12.5px;
+        font-weight: 600;
+        border-radius: 6px;
+      }
+      .topbar button:hover {
+        color: var(--text);
+      }
+      .topbar .sp {
+        flex: 1;
+      }
+      .lang {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .lang button {
+        padding: 3px 9px;
+        font-size: 11.5px;
+        border-radius: 0;
+      }
+      .lang button.on {
+        background: var(--panel2);
+        color: var(--gold);
+      } /* ============ MAIN HEADER ============ */
+      .mainhead {
+        background: linear-gradient(180deg, #100e0c, #0b0a09);
+        border-bottom: 1px solid var(--line);
+      }
+      .mainhead .in {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 88px;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        cursor: pointer;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .bull {
+        width: 46px;
+        height: 46px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+      }
+      .wordmark {
+        line-height: 1;
+      }
+      .wordmark .km {
+        font-family: var(--disp);
+        font-size: 31px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        background: linear-gradient(178deg, #f4f4f2 5%, #cfcecb 35%, #8f8d89 62%, #5f5d5a 86%, #c4c3c0 99%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+      .wordmark .tg {
+        display: block;
+        font-size: 9px;
+        letter-spacing: 0.42em;
+        color: var(--dim);
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-top: 3px;
+      }
+      .search {
+        flex: 1;
+        max-width: 560px;
+        position: relative;
+      }
+      .search input {
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line2);
+        border-radius: 999px;
+        color: var(--text);
+        padding: 12px 48px 12px 20px;
+        font-size: 14px;
+        outline: none;
+        transition: 0.15s;
+      }
+      .search input:focus {
+        border-color: var(--amber);
+        box-shadow: 0 0 0 3px rgba(201, 138, 61, 0.12);
+      }
+      .search input::placeholder {
+        color: var(--dim);
+      }
+      .search .go {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(180deg, var(--amber), var(--amber2));
+        color: #161310;
+        font-size: 15px;
+        font-weight: 800;
+      }
+      .hacts {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+      .hbtn {
+        background: none;
+        border: none;
+        color: var(--muted);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 11px;
+        border-radius: 9px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .hbtn:hover {
+        color: var(--text);
+        background: var(--panel);
+      }
+      .hbtn .i {
+        font-size: 19px;
+        line-height: 1;
+      }
+      .cartbtn {
+        position: relative;
+        background: linear-gradient(180deg, #2a2520, #1c1815);
+        border: 1px solid var(--line2);
+        color: var(--text);
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .cartbtn:hover {
+        border-color: var(--amber);
+      }
+      .cartbtn .tot {
+        color: var(--gold);
+      }
+      .badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--red);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 800;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+        border: 2px solid var(--bg);
+      } /* ============ CATEGORY NAV (wood bar) ============ */
+      .catnav {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(0, 0, 0, 0.25)),
+          repeating-linear-gradient(90deg, var(--wood3) 0px, var(--wood) 3px, var(--wood3) 7px, var(--wood2) 11px, var(--wood3) 16px);
+        border-bottom: 1px solid #000;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.04) inset,
+          0 6px 18px rgba(0, 0, 0, 0.45);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .catnav .in {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+      }
+      .catnav button {
+        background: none;
+        border: none;
+        color: #d9cdbd;
+        padding: 15px 17px;
+        font-family: var(--disp);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        transition: 0.15s;
+      }
+      .catnav button:hover {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.18);
+      }
+      .catnav button.on {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+        background: rgba(0, 0, 0, 0.22);
+      }
+      .catnav button.hot {
+        color: #ffb08a;
+      }
+      .catnav .sp {
+        flex: 1;
+      }
+      main {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 30px 22px 70px;
+      } /* ============ SHARED ============ */
+      .eyebrow {
+        color: var(--amber);
+        font-family: var(--disp);
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-family: var(--disp);
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 52px;
+        line-height: 1.02;
+        letter-spacing: 0.02em;
+      }
+      h2 {
+        font-family: var(--disp);
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 26px;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+      }
+      .sub {
+        color: var(--muted);
+        max-width: 660px;
+        margin-top: 10px;
+        font-size: 14.5px;
+      }
+      .btn {
+        border: none;
+        border-radius: 10px;
+        padding: 13px 24px;
+        font-weight: 700;
+        font-size: 13.5px;
+        font-family: var(--disp);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: 0.15s;
+      }
+      .btn-p {
+        background: linear-gradient(180deg, #d99a4b, #b3762e);
+        color: #171310;
+        box-shadow:
+          0 3px 14px rgba(201, 138, 61, 0.3),
+          0 1px 0 rgba(255, 255, 255, 0.35) inset;
+      }
+      .btn-p:hover {
+        filter: brightness(1.07);
+      }
+      .btn-r {
+        background: linear-gradient(180deg, #b13e37, #8a2c27);
+        color: #fff;
+        box-shadow: 0 3px 14px rgba(160, 53, 48, 0.35);
+      }
+      .btn-r:hover {
+        filter: brightness(1.08);
+      }
+      .btn-g {
+        background: var(--panel2);
+        color: var(--text);
+        border: 1px solid var(--line2);
+      }
+      .btn-g:hover {
+        border-color: var(--dim);
+      }
+      .btn-s {
+        background: none;
+        border: 1px solid var(--line2);
+        color: var(--muted);
+        padding: 9px 15px;
+        font-size: 12px;
+      }
+      .btn-s:hover {
+        color: var(--text);
+        border-color: var(--dim);
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .card {
+        background: linear-gradient(180deg, var(--panel2), var(--panel));
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: 20px;
+      }
+      .empty {
+        border: 1px dashed var(--line2);
+        border-radius: var(--r);
+        padding: 48px 20px;
+        text-align: center;
+        color: var(--dim);
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="date"],
+      select {
+        width: 100%;
+        background: var(--bg2);
+        border: 1px solid var(--line2);
+        border-radius: 9px;
+        color: var(--text);
+        padding: 11px 13px;
+        font-size: 14px;
+        outline: none;
+        transition: 0.15s;
+      }
+      input:focus,
+      select:focus {
+        border-color: var(--amber);
+      }
+      label.f {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        margin: 0 0 6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-family: var(--disp);
+      }
+      .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--panel2);
+        border: 1px solid var(--line2);
+        color: var(--muted);
+        border-radius: 20px;
+        padding: 3px 11px;
+        font-size: 11.5px;
+        font-weight: 700;
+      } /* ============ HERO ============ */
+      .herowrap {
+        display: grid;
+        grid-template-columns: 1.7fr 1fr;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+      .hero {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line2);
+        min-height: 430px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 54px;
+        background:
+          radial-gradient(700px 300px at 50% -80px, rgba(210, 167, 92, 0.2), transparent 65%), radial-gradient(500px 400px at 108% 118%, rgba(160, 53, 48, 0.2), transparent 60%),
+          linear-gradient(200deg, #1a1613 0%, #0d0b09 55%, #0a0908 100%);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.5;
+        pointer-events: none;
+        background: repeating-linear-gradient(115deg, transparent 0 34px, rgba(255, 255, 255, 0.014) 34px 35px), repeating-linear-gradient(25deg, transparent 0 52px, rgba(0, 0, 0, 0.25) 52px 54px);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 90px;
+        pointer-events: none;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55)), repeating-linear-gradient(90deg, #241a10 0 5px, #1a1209 5px 10px, #20160d 10px 16px);
+        opacity: 0.55;
+        -webkit-mask-image: linear-gradient(180deg, transparent, black 70%);
+        mask-image: linear-gradient(180deg, transparent, black 70%);
+      }
+      .hero > * {
+        position: relative;
+        z-index: 2;
+      }
+      .hero h1 .l2 {
+        display: block;
+      }
+      .hero .cta {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .hero .glowline {
+        width: 64px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+        margin: 20px 0 0;
+      }
+      .promos {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 16px;
+      }
+      .promo {
+        position: relative;
+        border-radius: 16px;
+        border: 1px solid var(--line2);
+        overflow: hidden;
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        cursor: pointer;
+        min-height: 200px;
+        transition: 0.2s;
+      }
+      .promo:hover {
+        border-color: var(--amber);
+        transform: translateY(-2px);
+      }
+      .promo h3 {
+        font-family: var(--disp);
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        line-height: 1.15;
+      }
+      .promo p {
+        color: var(--muted);
+        font-size: 12.5px;
+        margin-top: 4px;
+      }
+      .promo .arr {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #b13e37, #8a2c27);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 17px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+        transition: 0.2s;
+      }
+      .promo:hover .arr {
+        transform: translateX(4px);
+      }
+      .promo .art {
+        position: absolute;
+        top: -12px;
+        right: -14px;
+        opacity: 0.9;
+        pointer-events: none;
+      }
+      .p1 {
+        background: radial-gradient(400px 200px at 90% 0%, rgba(210, 167, 92, 0.24), transparent 60%), linear-gradient(160deg, #221b13, #100d0a 75%);
+      }
+      .p2 {
+        background: radial-gradient(400px 200px at 90% 0%, rgba(160, 53, 48, 0.28), transparent 60%), linear-gradient(160deg, #1f1210, #0f0b0a 75%);
+      } /* ============ TRUST STRIP ============ */
+      .trust {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent), var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 26px;
+        margin: 16px 0 40px;
+      }
+      .trust .it {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .trust .it b {
+        color: var(--text);
+      }
+      .trust .stars {
+        color: var(--gold);
+        letter-spacing: 2px;
+        font-size: 14px;
+      } /* ============ SERVICES ============ */
+      .services {
+        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+        margin-top: 20px;
+      }
+      .svc {
+        cursor: pointer;
+        transition: 0.18s;
+        position: relative;
+      }
+      .svc:hover {
+        transform: translateY(-3px);
+        border-color: var(--amber);
+      }
+      .svc .ic {
+        width: 46px;
+        height: 46px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        background: linear-gradient(180deg, #2b241d, #1b1713);
+        border: 1px solid var(--line2);
+        color: var(--gold);
+        font-size: 20px;
+      }
+      .svc h3 {
+        font-size: 14.5px;
+        font-weight: 700;
+        font-family: var(--disp);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .svc p {
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.55;
+        margin-top: 5px;
+      }
+      .svc .go {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        color: var(--dim);
+        transition: 0.18s;
+      }
+      .svc:hover .go {
+        color: var(--gold);
+        transform: translateX(3px);
+      } /* ============ CATALOG ============ */
+      .toolrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 20px 0 24px;
+        align-items: center;
+      }
+      .toolrow button {
+        background: var(--panel);
+        border: 1px solid var(--line2);
+        color: var(--muted);
+        padding: 8px 17px;
+        border-radius: 20px;
+        font-size: 12.5px;
+        font-weight: 700;
+        transition: 0.15s;
+      }
+      .toolrow button.on {
+        background: linear-gradient(180deg, #2c241b, #211a13);
+        border-color: var(--amber);
+        color: var(--gold);
+      }
+      .products {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      .prod {
+        background: linear-gradient(180deg, var(--panel2), var(--panel));
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+        transition: 0.18s;
+        display: flex;
+        flex-direction: column;
+      }
+      .prod:hover {
+        transform: translateY(-3px);
+        border-color: var(--line2);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+      }
+      .prod .img {
+        height: 160px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(230px 130px at 50% 30%, rgba(210, 167, 92, 0.14), transparent 70%), linear-gradient(180deg, #191512, #100e0c);
+      }
+      .prod .img svg {
+        filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.55));
+      }
+      .prod .tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-family: var(--disp);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+      .tag.premium {
+        background: linear-gradient(180deg, #e9e9e7, #b9b8b5);
+        color: #22201d;
+      }
+      .tag.popular {
+        background: linear-gradient(180deg, #d99a4b, #b3762e);
+        color: #1c1610;
+      }
+      .tag.sale {
+        background: linear-gradient(180deg, #b13e37, #8a2c27);
+        color: #fff;
+      }
+      .prod .bd {
+        padding: 17px 18px 18px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .prod h3 {
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .prod .desc {
+        color: var(--muted);
+        font-size: 12.5px;
+        margin: 4px 0 14px;
+        flex: 1;
+      }
+      .prod .prow {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px 10px;
+      }
+      .prod .prow .add {
+        margin-left: auto;
+      }
+      .price {
+        font-family: var(--disp);
+        font-weight: 800;
+        font-size: 20px;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+      .price small {
+        font-size: 11px;
+        color: var(--dim);
+        font-family: var(--sans);
+        font-weight: 600;
+        letter-spacing: 0;
+        white-space: nowrap;
+      }
+      .price .old {
+        font-size: 12.5px;
+        color: var(--dim);
+        text-decoration: line-through;
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      .price .now {
+        color: #e88b7f;
+      }
+      .add {
+        background: linear-gradient(180deg, #2a2520, #1c1815);
+        border: 1px solid var(--line2);
+        color: var(--gold);
+        padding: 9px 15px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 800;
+        font-family: var(--disp);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: 0.15s;
+      }
+      .add:hover {
+        background: linear-gradient(180deg, #d99a4b, #b3762e);
+        color: #171310;
+        border-color: transparent;
+      } /* ============ DRAWER / MODAL ============ */
+      .ovl {
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 3, 3, 0.68);
+        backdrop-filter: blur(3px);
+        z-index: 90;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s;
+      }
+      .ovl.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(440px, 100vw);
+        background: var(--bg2);
+        border-left: 1px solid var(--line2);
+        z-index: 100;
+        transform: translateX(100%);
+        transition: 0.25s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .drawer.show {
+        transform: none;
+      }
+      .dhead {
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .dhead h2 {
+        font-size: 17px;
+        margin: 0;
+      }
+      .x {
+        background: none;
+        border: none;
+        color: var(--dim);
+        font-size: 21px;
+        padding: 4px;
+      }
+      .x:hover {
+        color: var(--text);
+      }
+      .dbody {
+        flex: 1;
+        overflow-y: auto;
+        padding: 18px 24px;
+      }
+      .dfoot {
+        padding: 18px 24px;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .citem {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .citem .ci {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        background: radial-gradient(40px 26px at 50% 32%, rgba(210, 167, 92, 0.16), transparent), #15120f;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .citem .nm {
+        flex: 1;
+        min-width: 0;
+      }
+      .citem .nm b {
+        font-size: 13.5px;
+        display: block;
+      }
+      .citem .nm span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .qty {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .qty button {
+        width: 27px;
+        height: 27px;
+        border-radius: 7px;
+        background: var(--panel2);
+        border: 1px solid var(--line2);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1;
+      }
+      .qty b {
+        min-width: 18px;
+        text-align: center;
+        font-size: 13.5px;
+      }
+      .trow {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13.5px;
+        color: var(--muted);
+        padding: 3px 0;
+      }
+      .trow.tt {
+        color: var(--text);
+        font-weight: 800;
+        font-size: 16px;
+        border-top: 1px solid var(--line2);
+        margin-top: 8px;
+        padding-top: 10px;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 110;
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        overflow-y: auto;
+        padding: 44px 16px;
+      }
+      .modal.show {
+        display: flex;
+      }
+      .mbox {
+        background: var(--bg2);
+        border: 1px solid var(--line2);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 580px;
+        padding: 28px;
+        position: relative;
+        animation: pop 0.18s ease;
+      }
+      @keyframes pop {
+        from {
+          transform: translateY(10px);
+          opacity: 0;
+        }
+        to {
+          transform: none;
+          opacity: 1;
+        }
+      }
+      .mbox .x {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+      } /* ============ INVOICE ============ */
+      .inv {
+        background: #faf7f0;
+        color: #26201a;
+        border-radius: 12px;
+        padding: 28px;
+        font-size: 13.5px;
+      }
+      .inv .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 2px solid #26201a;
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+      }
+      .inv .lg {
+        font-family: var(--disp);
+        font-weight: 900;
+        font-size: 22px;
+        letter-spacing: 0.12em;
+        color: #26201a;
+      }
+      .inv .lg small {
+        display: block;
+        font-size: 9px;
+        letter-spacing: 0.4em;
+        color: #8a7c68;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .inv .meta {
+        font-size: 12px;
+        color: #6f6250;
+        text-align: right;
+      }
+      .inv table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+      }
+      .inv th {
+        text-align: left;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #6f6250;
+        border-bottom: 1px solid #d9cfbe;
+        padding: 6px 4px;
+      }
+      .inv td {
+        padding: 7px 4px;
+        border-bottom: 1px solid #ece4d4;
+      }
+      .inv .tr {
+        text-align: right;
+      }
+      .inv .tots {
+        margin-left: auto;
+        width: 230px;
+      }
+      .inv .tots div {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px 4px;
+      }
+      .inv .tots .g {
+        font-weight: 800;
+        border-top: 2px solid #26201a;
+        margin-top: 5px;
+        padding-top: 7px;
+        font-size: 15px;
+      }
+      .inv .foot {
+        margin-top: 16px;
+        font-size: 11.5px;
+        color: #6f6250;
+        text-align: center;
+        border-top: 1px dashed #d9cfbe;
+        padding-top: 12px;
+      }
+      .inv .stamp {
+        display: inline-block;
+        border: 2px solid #4a9a62;
+        color: #33804c;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 2px;
+        padding: 4px 12px;
+        border-radius: 6px;
+        transform: rotate(-4deg);
+        text-transform: uppercase;
+        margin-top: 8px;
+      } /* ============ ORDERS ============ */
+      .order {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .order .oi {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        background: #15120f;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .order .om {
+        flex: 1;
+        min-width: 170px;
+      }
+      .order .om b {
+        display: block;
+        font-size: 14.5px;
+      }
+      .order .om span {
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+      .st {
+        font-size: 11px;
+        font-weight: 800;
+        padding: 5px 12px;
+        border-radius: 5px;
+        letter-spacing: 0.08em;
+        font-family: var(--disp);
+        text-transform: uppercase;
+      }
+      .st.ready {
+        background: rgba(95, 184, 120, 0.13);
+        color: var(--green);
+        border: 1px solid rgba(95, 184, 120, 0.35);
+      }
+      .st.prep {
+        background: rgba(210, 167, 92, 0.12);
+        color: var(--gold);
+        border: 1px solid rgba(210, 167, 92, 0.35);
+      }
+      .st.done {
+        background: var(--panel2);
+        color: var(--muted);
+        border: 1px solid var(--line2);
+      } /* ============ LOYALTY ============ */
+      .lcard {
+        border-radius: 18px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        max-width: 490px;
+        border: 1px solid #4d4a45;
+        background:
+          radial-gradient(420px 200px at 85% -30%, rgba(210, 167, 92, 0.16), transparent 60%), repeating-linear-gradient(105deg, transparent 0 3px, rgba(255, 255, 255, 0.012) 3px 4px),
+          linear-gradient(150deg, #1d1b18, #0d0c0b 70%);
+        box-shadow:
+          0 20px 50px rgba(0, 0, 0, 0.5),
+          0 1px 0 rgba(255, 255, 255, 0.06) inset;
+      }
+      .lcard .brand2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+      .lcard .brand2 .wm {
+        font-family: var(--disp);
+        font-weight: 900;
+        font-size: 19px;
+        letter-spacing: 0.14em;
+      }
+      .lcard .tier {
+        color: var(--gold);
+        font-family: var(--disp);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        border: 1px solid rgba(210, 167, 92, 0.45);
+        padding: 5px 13px;
+        border-radius: 5px;
+      }
+      .lcard .pts {
+        font-family: var(--disp);
+        font-weight: 900;
+        font-size: 52px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+      }
+      .lcard .pts small {
+        font-size: 13px;
+        color: var(--muted);
+        font-family: var(--sans);
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      .lcard .id {
+        margin-top: 22px;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: 0.24em;
+        font-family: var(--disp);
+      }
+      .bars {
+        display: flex;
+        gap: 3px;
+        margin-top: 10px;
+        height: 36px;
+        align-items: flex-end;
+      }
+      .bars i {
+        width: 3px;
+        background: #cfc9bd;
+        display: block;
+      }
+      .stamps {
+        display: flex;
+        gap: 9px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .stampc {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px dashed var(--line2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        color: var(--dim);
+      }
+      .stampc.f {
+        border: 2px solid var(--gold);
+        background: rgba(210, 167, 92, 0.12);
+        color: var(--gold);
+      }
+      .pbar {
+        height: 8px;
+        background: #26221d;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+      .pbar i {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, #8e8c88, #e8e7e4);
+        border-radius: 6px;
+        transition: 0.4s;
+      } /* ============ PLANNER ============ */
+      .week {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      }
+      .day {
+        background: linear-gradient(180deg, var(--panel2), var(--panel));
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+        min-height: 155px;
+        display: flex;
+        flex-direction: column;
+      }
+      .day h4 {
+        font-family: var(--disp);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .day .slot {
+        flex: 1;
+      }
+      .meal {
+        background: var(--bg2);
+        border: 1px solid var(--line2);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 12.5px;
+        margin-bottom: 7px;
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        align-items: center;
+      }
+      .meal button {
+        background: none;
+        border: none;
+        color: var(--dim);
+        font-size: 13px;
+        padding: 0;
+      }
+      .meal button:hover {
+        color: #e88b7f;
+      }
+      .dayadd {
+        background: none;
+        border: 1px dashed var(--line2);
+        color: var(--dim);
+        border-radius: 8px;
+        padding: 7px;
+        font-size: 12px;
+        width: 100%;
+        transition: 0.15s;
+      }
+      .dayadd:hover {
+        color: var(--gold);
+        border-color: var(--amber);
+      } /* ============ RECIPES ============ */
+      .recipes {
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      }
+      .rec .img {
+        height: 140px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        border: 1px solid var(--line);
+        background: radial-gradient(200px 110px at 50% 28%, rgba(210, 167, 92, 0.16), transparent 70%), linear-gradient(180deg, #191512, #100e0c);
+      }
+      .rec h3 {
+        font-size: 15.5px;
+        font-weight: 700;
+      }
+      .rec .meta {
+        display: flex;
+        gap: 14px;
+        color: var(--muted);
+        font-size: 12.5px;
+        margin: 7px 0 13px;
+      }
+      .rec .acts {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: auto;
+      }
+      .rec .acts .btn {
+        padding: 8px 13px;
+        font-size: 11px;
+        letter-spacing: 0.07em;
+      }
+      .rec {
+        display: flex;
+        flex-direction: column;
+      } /* ============ NEWSLETTER / FOOTER ============ */
+      .news {
+        border-radius: 16px;
+        border: 1px solid var(--line2);
+        padding: 40px;
+        margin-top: 46px;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(560px 260px at 12% -40%, rgba(210, 167, 92, 0.14), transparent 60%), linear-gradient(160deg, #1a1613, #0e0c0a 70%);
+      }
+      .news .frm {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        max-width: 480px;
+      }
+      .news .frm input {
+        flex: 1;
+        border-radius: 999px;
+        padding-left: 20px;
+      }
+      .news .frm .btn {
+        border-radius: 999px;
+      }
+      .prefs {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .prefs label {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        font-size: 13px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .prefs input {
+        accent-color: var(--amber);
+      }
+      footer {
+        background: #080706;
+        border-top: 1px solid var(--line);
+        margin-top: 64px;
+      }
+      .fwrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 40px 22px 30px;
+      }
+      .fcols {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 30px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--line);
+      }
+      .fcols h5 {
+        font-family: var(--disp);
+        font-size: 11px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 12px;
+      }
+      .fcols button {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 13px;
+        padding: 4px 0;
+        text-align: left;
+      }
+      .fcols button:hover {
+        color: var(--gold);
+      }
+      .fbot {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        color: var(--dim);
+        font-size: 12.5px;
+      }
+      /* ============ WHATSAPP ============ */
+      .wa-float {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 80;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(180deg, #2bb857, #1e9e46);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          0 10px 26px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.09) inset;
+        transition: 0.18s;
+      }
+      .wa-float:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 14px 32px rgba(30, 158, 70, 0.35);
+      }
+      .wa-float svg {
+        width: 28px;
+        height: 28px;
+        fill: #fff;
+      }
+      .btn-w {
+        background: linear-gradient(180deg, #1e3826, #152b1d);
+        border: 1px solid #2e7d47;
+        color: #7fe0a0;
+      }
+      .btn-w:hover {
+        border-color: #3fae62;
+        color: #a5f0c0;
+      }
+      /* ============ STORE SECTION ============ */
+      .store {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 26px;
+        margin-top: 46px;
+        align-items: start;
+      }
+      .store .s-story {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.75;
+        margin-top: 10px;
+      }
+      .store .s-map {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid var(--line2);
+        padding: 9px 16px;
+        border-radius: 9px;
+        transition: 0.15s;
+      }
+      .store .s-map:hover {
+        border-color: var(--amber);
+        background: var(--panel);
+      }
+      .hours .hrow {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 13.5px;
+      }
+      .hours .hrow:last-child {
+        border-bottom: none;
+      }
+      .hours .hrow span:first-child {
+        color: var(--muted);
+      }
+      .hours .hrow b {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .hours .today b {
+        color: var(--gold);
+      }
+      @media (max-width: 900px) {
+        .store {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* ============ EMBERS / REVEAL ============ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+      }
+      .embers {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .embers i {
+        position: absolute;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffc37e 20%, #d96a1e 65%, transparent 75%);
+        opacity: 0;
+        animation: emb linear infinite;
+      }
+      @keyframes emb {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.9;
+        }
+        60% {
+          opacity: 0.35;
+        }
+        100% {
+          transform: translate(var(--dx, 24px), -360px) scale(0.35);
+          opacity: 0;
+        }
+      }
+      .io-pre {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      .io-in {
+        opacity: 1;
+        transform: none;
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .io-pre {
+          opacity: 1;
+          transform: none;
+        }
+        .embers i {
+          animation: none;
+        }
+      }
+      #toast {
+        position: fixed;
+        bottom: 26px;
+        left: 50%;
+        transform: translate(-50%, 20px);
+        background: #211d18;
+        border: 1px solid var(--line2);
+        color: var(--text);
+        padding: 13px 24px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.25s;
+        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.6);
+      }
+      #toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      #toast b {
+        color: var(--gold);
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      @media (max-width: 900px) {
+        .herowrap {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 36px;
+        }
+        .hero {
+          padding: 36px 28px;
+          min-height: 340px;
+        }
+        .fcols {
+          grid-template-columns: 1fr 1fr;
+        }
+        /* header: brand + actions on row 1, full-width search on row 2 */
+        .mainhead .in {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 12px 16px 14px;
+          gap: 10px 12px;
+        }
+        .search {
+          order: 3;
+          flex: 1 1 100%;
+          max-width: none;
+        }
+        .search input {
+          padding: 10px 44px 10px 18px;
+        }
+        .hacts {
+          gap: 2px;
+        }
+        .hbtn {
+          padding: 6px 7px;
+        }
+        .hbtn span:not(.i) {
+          display: none;
+        }
+        .cartbtn {
+          padding: 9px 13px;
+        }
+        .cartbtn #cartlbl {
+          display: none;
+        }
+        .bull {
+          width: 36px;
+          height: 36px;
+        }
+        .wordmark .km {
+          font-size: 23px;
+        }
+        .wordmark .tg {
+          font-size: 7.5px;
+          letter-spacing: 0.3em;
+        }
+        .brand {
+          gap: 10px;
+        }
+      }
+      @media (max-width: 640px) {
+        main {
+          padding: 22px 14px 56px;
+        }
+        .products {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .prod .img {
+          height: 112px;
+        }
+        .prod .img svg {
+          max-width: 86px;
+          max-height: 86px;
+        }
+        .prod .bd {
+          padding: 12px 13px 14px;
+        }
+        .prod h3 {
+          font-size: 13.5px;
+        }
+        .prod .desc {
+          font-size: 11.5px;
+          margin: 3px 0 10px;
+        }
+        .price {
+          font-size: 17px;
+        }
+        .add {
+          padding: 7px 11px;
+          font-size: 11px;
+        }
+        .prod .tag {
+          top: 8px;
+          left: 8px;
+        }
+        h1 {
+          font-size: 31px;
+        }
+        .hero {
+          padding: 30px 22px;
+          min-height: 300px;
+        }
+        .news {
+          padding: 28px 20px;
+        }
+        .news .frm {
+          flex-wrap: wrap;
+        }
+        .news .frm .btn {
+          flex: 1 1 100%;
+        }
+        .trust {
+          gap: 10px;
+        }
+        #toast {
+          width: calc(100vw - 28px);
+          text-align: center;
+          bottom: 88px;
+        }
+        .wa-float {
+          right: 14px;
+          bottom: 18px;
+          width: 50px;
+          height: 50px;
+        }
+        .fcols {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+      }
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        .inv,
+        .inv * {
+          visibility: visible;
+        }
+        .inv {
+          position: absolute;
+          inset: 0;
+          border-radius: 0;
+        }
+      }
+      /* ═══════════════ KARBÓN EDITORIAL — LIGHT THEME OVERRIDES ═══════════════ */
+      :root {
+        --bg: #faf9f6;
+        --bg2: #ffffff;
+        --panel: #ffffff;
+        --panel2: #f5f3ee;
+        --stone: #f0eee8;
+        --line: #e7e3da;
+        --line2: #d6d0c4;
+        --text: #1d1c19;
+        --muted: #6c675e;
+        --dim: #a09a8e;
+        --ink: #14171f;
+        --ink2: #1d212c;
+        --gold: #9c7c43;
+        --amber: #9c7c43;
+        --amber2: #7f6434;
+        --red: #9c3f2b;
+        --red2: #7c2f1f;
+        --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+      }
+      h1,
+      h2 {
+        font-weight: 600;
+      }
+      ::selection {
+        background: var(--red);
+        color: #fff;
+      }
+      h1,
+      h2,
+      .section-head h2 {
+        font-family: var(--serif);
+        letter-spacing: 0;
+        text-transform: none;
+        font-weight: 700;
+      }
+      /* top utility bar + header */
+      .topbar {
+        background: var(--ink);
+        border-bottom: 1px solid #0c0f16;
+      }
+      .topbar button {
+        color: #a9b0be;
+      }
+      .topbar button:hover {
+        color: #fff;
+      }
+      .lang {
+        border-color: #2c3342;
+      }
+      .lang button.on {
+        background: #262e3d;
+        color: #d7b57f;
+      }
+      .mainhead {
+        background: linear-gradient(180deg, #fdfbf7, #f6f2ea);
+        border-bottom: 1px solid var(--line);
+      }
+      .wordmark .km {
+        font-family: var(--serif);
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: var(--ink);
+        text-shadow: none;
+      }
+      .wordmark .tg {
+        color: var(--gold);
+      }
+      .bull path {
+        fill: var(--ink) !important;
+      }
+      .search input {
+        background: #fff;
+        border-color: var(--line2);
+        color: var(--text);
+      }
+      .search input::placeholder {
+        color: var(--dim);
+      }
+      .hbtn {
+        color: var(--muted);
+      }
+      .hbtn:hover {
+        color: var(--ink);
+        background: #efe9dd;
+      }
+      .cartbtn {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #f3efe6;
+      }
+      .cartbtn:hover {
+        border-color: var(--gold);
+      }
+      .cartbtn .tot {
+        color: #d7b57f;
+      }
+      .badge {
+        border-color: #fdfbf7;
+      }
+      /* category nav — clean white bar, T&G style */
+      .catnav {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: none;
+      }
+      .catnav button {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+      .catnav button:hover {
+        color: var(--text);
+        background: none;
+      }
+      .catnav button.on {
+        color: var(--text);
+        border-bottom-color: var(--red);
+        background: none;
+      }
+      .catnav button.hot {
+        color: var(--red);
+      }
+      /* hero — full-bleed photography, HG Walter style */
+      .herowrap {
+        display: block;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 540px;
+        border-radius: 4px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--ink);
+      }
+      .hero .hbg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero .hshade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(10, 10, 12, 0.35), rgba(10, 10, 12, 0.55) 65%, rgba(10, 10, 12, 0.72));
+      }
+      .hero .hin {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        padding: 60px 26px;
+      }
+      .hero h1 {
+        color: #fdfcf9;
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 66px;
+        line-height: 1.02;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+      }
+      .hero h1 .l2 {
+        display: block;
+        font-style: italic;
+        font-weight: 500;
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: #fdfcf9;
+      }
+      .hero .sub {
+        color: #e4e1da;
+        max-width: 520px;
+        margin: 14px auto 0;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+      }
+      .hero .eyebrow {
+        color: #e8d5ae;
+        letter-spacing: 0.3em;
+      }
+      .hero .cta {
+        justify-content: center;
+      }
+      .hero .glowline {
+        display: none;
+      }
+      /* promos — photo category banners */
+      .promos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+        gap: 22px;
+        margin-top: 22px;
+      }
+      .promo {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        overflow: hidden;
+        padding: 0;
+      }
+      .promo:hover {
+        border-color: var(--line2);
+        box-shadow: 0 14px 30px rgba(40, 35, 25, 0.1);
+      }
+      .promo .pimg {
+        height: 230px;
+        overflow: hidden;
+        background: var(--panel2);
+      }
+      .promo .pimg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .promo:hover .pimg img {
+        transform: scale(1.04);
+      }
+      .promo .pbd {
+        padding: 18px 22px 20px;
+      }
+      .promo h3 {
+        color: var(--text);
+        font-family: var(--serif);
+        text-transform: none;
+        letter-spacing: 0;
+        font-size: 23px;
+        font-weight: 600;
+      }
+      .promo p {
+        color: var(--muted);
+      }
+      .promo .arr {
+        display: none;
+      }
+      /* product/recipe/cart photos over SVG fallback */
+      .prod .img {
+        position: relative;
+      }
+      .prod .img > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .prod .tag {
+        z-index: 3;
+      }
+      .rec .img {
+        position: relative;
+        overflow: hidden;
+      }
+      .rec .img > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .citem .ci {
+        position: relative;
+        overflow: hidden;
+      }
+      .citem .ci > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .oi {
+        position: relative;
+        overflow: hidden;
+      }
+      .oi > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* services — icon columns, no cards */
+      .svc .ic svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--gold);
+        fill: none;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      /* store photo */
+      .s-photo {
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 22px;
+        height: 300px;
+        background: var(--panel2);
+      }
+      .s-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* shared surfaces */
+      .card,
+      .svc {
+        background: #fff;
+        border-color: var(--line);
+      }
+      .card:hover,
+      .svc:hover {
+        border-color: var(--line2);
+        box-shadow: 0 14px 30px rgba(60, 48, 30, 0.1);
+      }
+      .svc .ic {
+        background: var(--panel2);
+        border: 1px solid var(--line);
+      }
+      .svc h3 {
+        color: var(--text);
+      }
+      .trust {
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      .trust .it b {
+        color: var(--muted);
+      }
+      .eyebrow {
+        color: var(--gold);
+      }
+      .sub {
+        color: var(--muted);
+      }
+      .toolrow button {
+        background: #fff;
+        border-color: var(--line2);
+        color: var(--muted);
+      }
+      .toolrow button.on {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #e5c48b;
+      }
+      /* products */
+      .prod {
+        background: #fff;
+      }
+      .prod:hover {
+        box-shadow: 0 16px 32px rgba(60, 48, 30, 0.13);
+      }
+      .prod .img {
+        background: radial-gradient(240px 140px at 50% 32%, rgba(179, 129, 61, 0.12), transparent 72%), linear-gradient(180deg, #f3eee4, #eae3d4);
+      }
+      .prod .img svg {
+        filter: drop-shadow(0 8px 12px rgba(70, 50, 25, 0.28));
+      }
+      .prod h3 {
+        font-family: var(--serif);
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .price {
+        font-family: var(--sans);
+        font-weight: 800;
+      }
+      .price .now {
+        color: var(--red);
+      }
+      .add {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #e5c48b;
+      }
+      .add:hover {
+        background: linear-gradient(180deg, #c59457, #a8783a);
+        color: #171310;
+      }
+      .tag.premium {
+        background: var(--ink);
+        color: #e5c48b;
+      }
+      /* buttons */
+      .btn-g {
+        background: transparent;
+        border: 1px solid var(--line2);
+        color: var(--text);
+      }
+      .btn-g:hover {
+        border-color: var(--ink);
+        background: #efe9dd;
+      }
+      .btn-s {
+        background: #fff;
+        border: 1px solid var(--line2);
+        color: var(--muted);
+      }
+      .btn-s:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+      .btn-w {
+        background: #eaf5ec;
+        border-color: #9fd0ac;
+        color: #1e7d3c;
+      }
+      .btn-w:hover {
+        border-color: #2f9e52;
+        color: #146030;
+      }
+      /* hero CTA ghost */
+      .hero .btn-g {
+        border-color: #3a4252;
+        color: #dfe3ea;
+      }
+      .hero .btn-g:hover {
+        border-color: #d7b57f;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+      }
+      /* inputs */
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="date"],
+      select {
+        background: #fff;
+        border-color: var(--line2);
+        color: var(--text);
+      }
+      label.f {
+        color: var(--muted);
+      }
+      /* news — ink anchor panel */
+      .news {
+        background: radial-gradient(560px 260px at 12% -40%, rgba(215, 181, 127, 0.15), transparent 60%), linear-gradient(160deg, #1e2532, #12161f 70%);
+        border-color: #0e1219;
+      }
+      .news h2 {
+        color: #f3efe6;
+      }
+      .news .sub {
+        color: #aab1bf;
+      }
+      .news .prefs label {
+        color: #aab1bf;
+      }
+      /* store */
+      .store .s-story {
+        color: var(--muted);
+      }
+      .store .s-map {
+        color: var(--gold);
+        border-color: var(--line2);
+      }
+      .store .s-map:hover {
+        border-color: var(--gold);
+        background: #fff;
+      }
+      .hours .hrow {
+        border-color: var(--line);
+      }
+      .hours .hrow b {
+        color: var(--text);
+      }
+      .hours .today b {
+        color: var(--amber2);
+      }
+      /* planner / recipes */
+      .day {
+        background: #fff;
+        border-color: var(--line);
+      }
+      .meal {
+        background: var(--panel2);
+        border-color: var(--line);
+      }
+      .dayadd {
+        border-color: var(--line2);
+        color: var(--dim);
+      }
+      .dayadd:hover {
+        color: var(--amber2);
+        border-color: var(--amber);
+      }
+      .rec .img {
+        border-color: var(--line);
+        background: radial-gradient(200px 110px at 50% 28%, rgba(179, 129, 61, 0.13), transparent 70%), linear-gradient(180deg, #f3eee4, #eae3d4);
+      }
+      .rec h3 {
+        font-family: var(--serif);
+        font-size: 17px;
+      }
+      /* orders / loyalty */
+      .st.ready {
+        background: #e7f4ea;
+        color: #1e7d3c;
+        border-color: #bfe3c8;
+      }
+      .st.prep {
+        background: #fdf3e2;
+        color: #96682c;
+        border-color: #ecd9b4;
+      }
+      .st.done {
+        background: #f0ede6;
+        color: var(--muted);
+        border-color: var(--line2);
+      }
+      .chip {
+        background: var(--panel2);
+        border-color: var(--line2);
+        color: var(--muted);
+      }
+      .lcard {
+        background:
+          radial-gradient(360px 180px at 80% -20%, rgba(215, 181, 127, 0.16), transparent 60%),
+          linear-gradient(150deg, #1e2532, #12161f 75%);
+        border-color: #0e1219;
+      }
+      .pbar {
+        background: #2a3140;
+      }
+      /* drawer + modal */
+      .drawer {
+        background: #faf7f1;
+        border-left-color: var(--line2);
+      }
+      .dhead,
+      .dfoot {
+        border-color: var(--line);
+      }
+      .dfoot {
+        background: #f3efe6;
+      }
+      .dhead h2 {
+        font-family: var(--serif);
+      }
+      .citem .ci {
+        background: linear-gradient(180deg, #f3eee4, #eae3d4);
+        border: 1px solid var(--line);
+      }
+      .mbox {
+        background: #fdfbf7;
+        border: 1px solid var(--line2);
+      }
+      .x {
+        color: var(--dim);
+      }
+      .x:hover {
+        color: var(--text);
+      }
+      .empty {
+        color: var(--muted);
+      }
+      /* footer — ink */
+      footer {
+        background: var(--ink);
+        border-top: 1px solid #0c0f16;
+      }
+      footer h5,
+      footer .fcols h5 {
+        color: #8d95a5;
+      }
+      footer button,
+      .fcols button {
+        color: #aab1bf;
+      }
+      footer button:hover,
+      .fcols button:hover {
+        color: #fff;
+      }
+      .fcols .wordmark .km {
+        color: #f3efe6;
+      }
+      .fbot {
+        color: #78808f;
+        border-top: 1px solid #232a38;
+      }
+      #toast {
+        background: var(--ink);
+        border-color: #2c3342;
+        color: #f3efe6;
+      }
+      #toast b {
+        color: #e5c48b;
+      }
+      .ovl {
+        background: rgba(24, 20, 12, 0.45);
+      }
+      /* editorial finish */
+      :root {
+        --r: 4px;
+      }
+      .btn {
+        border-radius: 3px;
+      }
+      .section-head h2,
+      h2 {
+        font-size: 34px;
+      }
+      .hero h1 {
+        letter-spacing: 0.01em;
+      }
+      .trust {
+        background: none;
+        border: none;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        justify-content: center;
+        gap: 48px;
+      }
+      .trust .it b {
+        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 11.5px;
+      }
+      .trust .stars {
+        display: none;
+      }
+      .prod {
+        border-radius: 4px;
+      }
+      .prod h3 {
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .prod .img {
+        height: 200px;
+      }
+      .toolrow button {
+        border-radius: 999px;
+      }
+      .eyebrow {
+        letter-spacing: 0.28em;
+        font-size: 10.5px;
+      }
+      .rec h3 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .rec .img {
+        height: 170px;
+        border-radius: 4px;
+      }
+      .news {
+        border-radius: 4px;
+      }
+      .news h2 {
+        font-family: var(--serif);
+      }
+      .lcard {
+        border-radius: 10px;
+      }
+      @media (max-width: 700px) {
+        .promos {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          min-height: 440px;
+        }
+        .hero h1 {
+          font-size: 42px;
+        }
+        h2,
+        .section-head h2 {
+          font-size: 27px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- top utility bar -->
+    <div class="topbar"><div class="in" id="topbar"></div></div>
+    <!-- main header -->
+    <div class="mainhead">
+      <div class="in">
+        <div class="brand" onclick="go('home')">
+          <svg class="bull" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <linearGradient id="stg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f2f2f0" />
+                <stop offset=".38" stop-color="#c8c7c4" />
+                <stop offset=".65" stop-color="#8e8c88" />
+                <stop offset=".88" stop-color="#5f5d5a" />
+                <stop offset="1" stop-color="#bdbcb9" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#stg)"
+              d="M6 14c4 8 10 12 16 13-2 2-3 5-3 8 0 8 6 15 13 15s13-7 13-15c0-3-1-6-3-8 6-1 12-5 16-13-7 2-12 2-17 6-2-2-6-3-9-3s-7 1-9 3c-5-4-10-4-17-6zm20 26a3 3 0 1 1 0 .01zm12 0a3 3 0 1 1 0 .01z"
+            />
+          </svg>
+          <div class="wordmark"><span class="km">KARBÓN</span> <span class="tg" id="brandtag">Carnicería Premium</span></div>
+        </div>
+        <div class="search"><input type="text" id="q" onkeydown="if (event.key === 'Enter') doSearch();" /> <button class="go" onclick="doSearch()">⌕</button></div>
+        <div class="hacts">
+          <button class="hbtn" onclick="go('loyalty')"><span class="i"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><span id="h-loy"></span></button>
+          <button class="hbtn" onclick="go('orders')"><span class="i"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span id="h-ord"></span></button>
+          <button class="cartbtn" onclick="openCart()">
+            <span style="display:inline-flex"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l1 13H4L5 8z"/><path d="M8 8a4 4 0 0 1 8 0"/></svg></span> <span id="cartlbl"></span> <span class="tot" id="carttot"></span><span class="badge" id="cartbadge" style="display: none">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- category nav -->
+    <div class="catnav"><div class="in" id="catnav"></div></div>
+    <main id="view"></main>
+    <footer>
+      <div class="fwrap">
+        <div class="fcols" id="fcols"></div>
+        <div class="fbot">
+          <div>© 2026 KARBÓN · San Salvador, El Salvador</div>
+          <div id="foot-tag"></div>
+        </div>
+      </div>
+    </footer>
+    <div class="ovl" id="ovl" onclick="closeAll()"></div>
+    <aside class="drawer" id="drawer">
+      <div class="dhead">
+        <h2 class="disp" id="dtitle"></h2>
+        <button class="x" onclick="closeAll()">✕</button>
+      </div>
+      <div class="dbody" id="dbody"></div>
+      <div class="dfoot" id="dfoot"></div>
+    </aside>
+    <div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+    <button class="wa-float" onclick="waOrder()" aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </button>
+    <div id="toast"></div>
+    <script>
+      /* ================= SVG PRODUCT ART ================= */ const DEFS = `<defs>  <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8463b"/><stop offset=".55" stop-color="#8a3229"/><stop offset="1" stop-color="#5f1f19"/></linearGradient>  <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c05a4a"/><stop offset="1" stop-color="#7c2a21"/></linearGradient>  <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e8d4"/><stop offset="1" stop-color="#d8c5a4"/></linearGradient>  <linearGradient id="wd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a2e"/><stop offset="1" stop-color="#422b19"/></linearGradient> </defs>`;
+      function svgWrap(inner, w) {
+        return `<svg width="${w || 120}" height="${(w || 120) * 0.82}" viewBox="0 0 100 82">${DEFS}   <ellipse cx="50" cy="72" rx="34" ry="6" fill="#000" opacity=".38"/>${inner}</svg>`;
+      }
+      const ART = {
+        steak: () =>
+          `<path d="M14 40 C12 22 30 12 50 14 C72 11 88 22 85 38 C88 54 70 64 48 62 C28 65 15 56 14 40Z" fill="url(#mg)"/>    <path d="M14 40 C12 22 30 12 50 14 C68 12 82 19 85 30 C70 24 60 30 48 28 C34 26 22 30 14 40Z" fill="url(#fg)" opacity=".9"/>    <path d="M30 40 C40 34 55 36 66 44 M26 50 C38 44 58 46 72 52" stroke="#e9d9bd" stroke-width="2.4" fill="none" opacity=".55" stroke-linecap="round"/>`,
+        ribeye: () =>
+          `<path d="M12 42 C10 24 28 12 50 13 C74 11 90 24 86 42 C88 56 68 66 47 63 C26 66 13 57 12 42Z" fill="url(#mg)"/>    <path d="M12 42 C10 24 28 12 50 13 C74 11 90 24 86 42 C88 56 68 66 47 63 C26 66 13 57 12 42Z" fill="none" stroke="url(#fg)" stroke-width="5" opacity=".85"/>    <circle cx="52" cy="38" r="8" fill="url(#fg)" opacity=".85"/>    <path d="M28 32 C34 42 30 50 24 54 M66 26 C60 34 64 46 72 50" stroke="#e9d9bd" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/>`,
+        flank: () =>
+          `<path d="M8 48 C14 32 34 24 56 22 C74 20 90 26 92 34 C90 44 72 52 50 56 C32 60 12 58 8 48Z" fill="url(#mg2)"/>    <path d="M18 44 L80 30 M22 50 L84 36" stroke="#5a1c15" stroke-width="2.6" opacity=".55" stroke-linecap="round"/>`,
+        ribs: () =>
+          `<path d="M12 30 C30 18 70 18 88 30 L84 56 C66 66 34 66 16 56 Z" fill="url(#mg)"/>    <path d="M24 26 L26 60 M40 22 L41 64 M56 22 L57 64 M72 26 L74 60" stroke="url(#fg)" stroke-width="6.5" stroke-linecap="round" opacity=".92"/>    <path d="M12 30 C30 18 70 18 88 30" fill="none" stroke="#5a1c15" stroke-width="3" opacity=".5"/>`,
+        ground: () =>
+          `<path d="M20 52 C14 36 30 22 50 22 C70 22 86 36 80 52 C74 62 26 62 20 52Z" fill="url(#mg2)"/>    ${Array.from({ length: 26 }, (_, k) => {
+            const a = k * 2.4,
+              r = 6 + ((k * 97) % 17),
+              x = 50 + Math.cos(a) * r * 1.9,
+              y = 40 + Math.sin(a) * r;
+            return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(2 + ((k * 31) % 3)).toFixed(1)}" fill="#b3564a" opacity=".65"/>`;
+          }).join("")}`,
+        chop: () =>
+          `<path d="M20 44 C18 28 34 16 54 17 C76 16 88 28 84 44 C86 56 68 64 50 62 C34 64 22 56 20 44Z" fill="url(#mg)"/>    <path d="M60 14 C74 12 88 20 88 32 C88 40 80 44 74 42 C78 34 72 26 62 26 Z" fill="url(#fg)"/>    <path d="M32 36 C42 32 54 34 64 40" stroke="#e9d9bd" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/>`,
+        loin: () =>
+          `<rect x="14" y="24" width="72" height="34" rx="17" fill="url(#mg)"/>    <rect x="14" y="24" width="72" height="12" rx="6" fill="url(#fg)" opacity=".88"/>    <path d="M28 48 L74 48" stroke="#5a1c15" stroke-width="2.4" opacity=".5" stroke-linecap="round"/>`,
+        belly: () => `<rect x="14" y="22" width="72" height="38" rx="8" fill="url(#mg2)"/>    <path d="M14 32 H86 M14 42 H86 M14 52 H86" stroke="url(#fg)" stroke-width="5" opacity=".9"/>`,
+        breast: () =>
+          `<path d="M18 50 C12 32 28 16 50 16 C72 16 88 30 84 46 C80 60 60 66 44 62 C30 60 22 58 18 50Z" fill="#e8b98a"/>    <path d="M18 50 C12 32 28 16 50 16 C64 16 76 22 81 32 C68 26 54 28 44 36 C34 44 28 50 18 50Z" fill="#f2ceA3" opacity=".8"/>`,
+        whole: () =>
+          `<ellipse cx="50" cy="42" rx="34" ry="24" fill="#e8b98a"/>    <ellipse cx="50" cy="36" rx="34" ry="16" fill="#f2cea3" opacity=".7"/>    <path d="M26 28 C18 20 16 14 20 10 C26 12 30 18 32 24 M74 28 C82 20 84 14 80 10 C74 12 70 18 68 24" fill="#e8b98a"/>    <path d="M38 62 L38 70 M62 62 L62 70" stroke="#d8a878" stroke-width="7" stroke-linecap="round"/>`,
+        wing: () =>
+          `<path d="M14 46 C18 30 34 22 50 26 C60 28 64 36 60 44 C54 54 34 58 22 54 C16 52 13 50 14 46Z" fill="#e8b98a"/>    <path d="M56 34 C68 24 82 24 88 32 C84 42 70 48 58 46" fill="#f2cea3"/>    <path d="M22 46 C30 40 44 38 54 40" stroke="#d8a878" stroke-width="2.6" fill="none" stroke-linecap="round"/>`,
+        chorizo: () =>
+          `<path d="M14 34 C24 20 76 20 86 34 C90 40 86 46 78 46 C60 40 40 40 22 46 C14 46 10 40 14 34Z" fill="url(#mg)"/>    <path d="M14 56 C24 42 76 42 86 56 C90 62 86 68 78 68 C60 62 40 62 22 68 C14 68 10 62 14 56Z" fill="url(#mg2)"/>    <path d="M20 32 L18 26 M80 32 L82 26" stroke="#7c2a21" stroke-width="3" stroke-linecap="round"/>`,
+        sausage: () =>
+          `<path d="M20 52 C10 44 12 28 26 22 C40 16 62 16 76 24 C90 32 90 48 78 54" fill="none" stroke="url(#mg2)" stroke-width="15" stroke-linecap="round"/>    <path d="M26 46 C20 41 21 32 30 28" fill="none" stroke="#c9705f" stroke-width="3" opacity=".6" stroke-linecap="round"/>`,
+        pack: () =>
+          `<rect x="16" y="30" width="68" height="36" rx="5" fill="url(#wd)"/>    <rect x="16" y="30" width="68" height="9" fill="#2b1c10"/>    <path d="M16 35 H84" stroke="#7c5836" stroke-width="1.4" opacity=".6"/>    <path d="M34 44 c3 6 8 9 12 10 -1 2-2 4-2 6 0 5 4 8 8 8 s8 -3 8 -8 c0 -2 -1 -4 -2 -6 4 -1 9 -4 12 -10 -5 1 -8 1 -12 4 -2 -1 -4 -2 -6 -2 s-4 1 -6 2 c-4 -3 -7 -3 -12 -4z" fill="#d2a75c"/>    <rect x="42" y="20" width="16" height="12" rx="2" fill="#8a3229"/><rect x="46" y="16" width="8" height="8" rx="2" fill="#a8463b"/>`,
+      };
+      function art(kind, w) {
+        return svgWrap((ART[kind] || ART.steak)(), w);
+      }
+      /* ================= DATA ================= */ const PRODUCTS = [
+        {
+          id: "lomito", photo: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?q=70&w=800&auto=format&fit=crop",
+          cat: "res",
+          art: "steak",
+          es: "Lomito de res",
+          en: "Beef Tenderloin",
+          des: "Corte magro y suave, ideal a la parrilla.",
+          den: "Lean, tender premium cut, perfect for grilling.",
+          price: 8.75,
+          unit: "lb",
+          tag: "premium",
+        },
+        {
+          id: "ribeye", photo: "https://images.unsplash.com/photo-1690983330536-3b0089d07cf9?q=70&w=800&auto=format&fit=crop",
+          cat: "res",
+          art: "ribeye",
+          es: "Rib Eye",
+          en: "Rib Eye Steak",
+          des: "Marmoleo perfecto, sabor intenso al carbón.",
+          den: "Perfect marbling, intense charcoal flavor.",
+          price: 9.5,
+          unit: "lb",
+          tag: "premium",
+        },
+        {
+          id: "puyazo", photo: "https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=70&w=800&auto=format&fit=crop",
+          cat: "res",
+          art: "steak",
+          es: "Puyazo",
+          en: "Sirloin Tip",
+          des: "El favorito para carne asada salvadoreña.",
+          den: "The Salvadoran carne asada favorite.",
+          price: 5.9,
+          sale: 4.99,
+          unit: "lb",
+          tag: "popular",
+        },
+        {
+          id: "costres", photo: "https://images.unsplash.com/photo-1588347818036-558601350947?q=70&w=800&auto=format&fit=crop",
+          cat: "res",
+          art: "ribs",
+          es: "Costilla de res",
+          en: "Beef Ribs",
+          des: "Perfecta para sopas y asados lentos.",
+          den: "Perfect for soups and slow roasting.",
+          price: 4.25,
+          unit: "lb",
+        },
+        {
+          id: "molida", photo: "https://images.unsplash.com/photo-1659612527352-64b5e0026138?q=70&w=800&auto=format&fit=crop",
+          cat: "res",
+          art: "ground",
+          es: "Carne molida especial",
+          en: "Premium Ground Beef",
+          des: "Molida fresca del día, 90% magra.",
+          den: "Fresh daily grind, 90% lean.",
+          price: 3.95,
+          unit: "lb",
+        },
+        { id: "falda", photo: "https://images.unsplash.com/photo-1602470521006-59ab77068b0d?q=70&w=800&auto=format&fit=crop", cat: "res", art: "flank", es: "Falda", en: "Flank Steak", des: "Ideal para deshilachar y guisos.", den: "Great for shredding and stews.", price: 4.1, unit: "lb" },
+        {
+          id: "chuleta", photo: "https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?q=70&w=800&auto=format&fit=crop",
+          cat: "cerdo",
+          art: "chop",
+          es: "Chuleta de cerdo",
+          en: "Pork Chop",
+          des: "Corte clásico, jugoso y versátil.",
+          den: "Classic juicy, versatile cut.",
+          price: 3.75,
+          unit: "lb",
+          tag: "popular",
+        },
+        {
+          id: "costcer", photo: "https://images.unsplash.com/photo-1622992599912-d5ce51fe395b?q=70&w=800&auto=format&fit=crop",
+          cat: "cerdo",
+          art: "ribs",
+          es: "Costilla de cerdo",
+          en: "Pork Ribs",
+          des: "Para BBQ ahumado estilo americano.",
+          den: "For American-style smoked BBQ.",
+          price: 4.5,
+          unit: "lb",
+        },
+        { id: "lomocer", photo: "https://images.unsplash.com/photo-1625144093498-bf62fca631c5?q=70&w=800&auto=format&fit=crop", cat: "cerdo", art: "loin", es: "Lomo de cerdo", en: "Pork Loin", des: "Magro y suave, ideal al horno.", den: "Lean and tender, great roasted.", price: 4.25, unit: "lb" },
+        {
+          id: "chich", photo: "https://images.unsplash.com/photo-1781941622559-17761ca02dd1?q=70&w=800&auto=format&fit=crop",
+          cat: "cerdo",
+          art: "belly",
+          es: "Chicharrón preparado",
+          en: "Seasoned Chicharrón",
+          des: "Adobado con receta de la casa.",
+          den: "Seasoned with our house recipe.",
+          price: 5.5,
+          unit: "lb",
+        },
+        {
+          id: "pechuga", photo: "https://images.unsplash.com/photo-1633096013004-e2cb4023b560?q=70&w=800&auto=format&fit=crop",
+          cat: "pollo",
+          art: "breast",
+          es: "Pechuga de pollo",
+          en: "Chicken Breast",
+          des: "Sin hueso, fresca del día.",
+          den: "Boneless, fresh daily.",
+          price: 2.95,
+          unit: "lb",
+          tag: "popular",
+        },
+        { id: "entero", photo: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?q=70&w=800&auto=format&fit=crop", cat: "pollo", art: "whole", es: "Pollo entero", en: "Whole Chicken", des: "Criado en granja local.", den: "Locally farm-raised.", price: 2.1, unit: "lb" },
+        {
+          id: "alitas", photo: "https://images.unsplash.com/photo-1642102903996-cdad15f5dcdd?q=70&w=800&auto=format&fit=crop",
+          cat: "pollo",
+          art: "wing",
+          es: "Alitas",
+          en: "Chicken Wings",
+          des: "Listas para tu salsa favorita.",
+          den: "Ready for your favorite sauce.",
+          price: 3.25,
+          sale: 2.75,
+          unit: "lb",
+        },
+        {
+          id: "chorizo", photo: "https://images.unsplash.com/photo-1624772398061-bbfa87ec6b5a?q=70&w=800&auto=format&fit=crop",
+          cat: "emb",
+          art: "chorizo",
+          es: "Chorizo artesanal",
+          en: "Artisan Chorizo",
+          des: "Receta propia, ahumado al carbón.",
+          den: "House recipe, charcoal smoked.",
+          price: 4.75,
+          unit: "lb",
+          tag: "premium",
+        },
+        {
+          id: "longaniza", photo: "https://images.unsplash.com/photo-1771243108040-696d2544adf3?q=70&w=800&auto=format&fit=crop",
+          cat: "emb",
+          art: "chorizo",
+          es: "Longaniza",
+          en: "Longaniza Sausage",
+          des: "Tradicional, con especias locales.",
+          den: "Traditional, with local spices.",
+          price: 4.5,
+          unit: "lb",
+        },
+        {
+          id: "salchicha", photo: "https://images.unsplash.com/photo-1766589152317-2bafe6f2923c?q=70&w=800&auto=format&fit=crop",
+          cat: "emb",
+          art: "sausage",
+          es: "Salchicha parrillera",
+          en: "Grilling Sausage",
+          des: "Perfecta para la parrilla del fin de semana.",
+          den: "Perfect for weekend grilling.",
+          price: 5.25,
+          unit: "lb",
+        },
+        {
+          id: "packfam", photo: "https://images.unsplash.com/photo-1690983321750-ad6f6d59a84b?q=70&w=800&auto=format&fit=crop",
+          cat: "pack",
+          art: "pack",
+          es: "Pack Parrillero Familiar",
+          en: "Family Grill Pack",
+          des: "5 lb surtidas: puyazo, chorizo, chuleta y alitas.",
+          den: "5 assorted lbs: sirloin, chorizo, chops & wings.",
+          price: 34.99,
+          sale: 29.99,
+          unit: "pack",
+          tag: "premium",
+        },
+        {
+          id: "packprem", photo: "https://images.unsplash.com/photo-1690983322025-aab4f95a0269?q=70&w=800&auto=format&fit=crop",
+          cat: "pack",
+          art: "pack",
+          es: "Pack Asado Premium",
+          en: "Premium BBQ Pack",
+          des: "Rib eye, lomito y salchicha parrillera. 6 lb.",
+          den: "Rib eye, tenderloin & grilling sausage. 6 lbs.",
+          price: 54.99,
+          unit: "pack",
+          tag: "premium",
+        },
+      ];
+      const RECIPES = [
+        {
+          id: "r1", photo: "https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=70&w=800&auto=format&fit=crop",
+          es: "Carne asada salvadoreña",
+          en: "Salvadoran Carne Asada",
+          art: "steak",
+          time: 35,
+          serv: 4,
+          dif: 2,
+          ing: [
+            ["puyazo", 2],
+            ["chorizo", 1],
+          ],
+          steps: [
+            "Marina el puyazo con naranja agria, ajo y comino por 2 horas.",
+            "Prepara el carbón hasta tener brasas parejas.",
+            "Asa la carne 4–5 min por lado; el chorizo hasta dorar.",
+            "Sirve con curtido, frijoles y tortillas recién hechas.",
+          ],
+          stepsEn: [
+            "Marinate sirloin with sour orange, garlic and cumin for 2 hours.",
+            "Prepare charcoal until embers are even.",
+            "Grill meat 4–5 min per side; chorizo until browned.",
+            "Serve with curtido, beans and fresh tortillas.",
+          ],
+        },
+        {
+          id: "r2", photo: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?q=70&w=800&auto=format&fit=crop",
+          es: "Lomito con chimichurri",
+          en: "Tenderloin with Chimichurri",
+          art: "steak",
+          time: 30,
+          serv: 2,
+          dif: 2,
+          ing: [["lomito", 1]],
+          steps: [
+            "Deja el lomito a temperatura ambiente 30 min.",
+            "Mezcla perejil, ajo, orégano, vinagre y aceite.",
+            "Sella a fuego alto 3 min por lado, luego fuego medio.",
+            "Reposa 5 min y sirve bañado en chimichurri.",
+          ],
+          stepsEn: [
+            "Bring tenderloin to room temperature, 30 min.",
+            "Mix parsley, garlic, oregano, vinegar and oil.",
+            "Sear on high 3 min per side, then medium heat.",
+            "Rest 5 min and serve topped with chimichurri.",
+          ],
+        },
+        {
+          id: "r3", photo: "https://images.unsplash.com/photo-1588347818036-558601350947?q=70&w=800&auto=format&fit=crop",
+          es: "Costillas BBQ ahumadas",
+          en: "Smoked BBQ Ribs",
+          art: "ribs",
+          time: 180,
+          serv: 6,
+          dif: 3,
+          ing: [["costcer", 3]],
+          steps: [
+            "Frota las costillas con especias secas la noche anterior.",
+            "Ahúma a fuego indirecto 3 horas a 120 °C.",
+            "Barniza con salsa BBQ los últimos 20 min.",
+            "Corta entre huesos y sirve caliente.",
+          ],
+          stepsEn: ["Dry-rub ribs the night before.", "Smoke over indirect heat 3 hours at 250 °F.", "Glaze with BBQ sauce for the last 20 min.", "Slice between bones and serve hot."],
+        },
+        {
+          id: "r4", photo: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?q=70&w=800&auto=format&fit=crop",
+          es: "Pollo al carbón",
+          en: "Charcoal Chicken",
+          art: "whole",
+          time: 60,
+          serv: 4,
+          dif: 1,
+          ing: [["entero", 1]],
+          steps: ["Abre el pollo en mariposa y adoba con achiote y limón.", "Asa con piel hacia arriba a fuego indirecto 40 min.", "Voltea y dora la piel 10 min más.", "Sirve con chirmol y arroz."],
+          stepsEn: ["Butterfly the chicken; season with achiote and lime.", "Grill skin-up over indirect heat 40 min.", "Flip and crisp the skin 10 more min.", "Serve with chirmol and rice."],
+        },
+        {
+          id: "r5", photo: "https://images.unsplash.com/photo-1690983321750-ad6f6d59a84b?q=70&w=800&auto=format&fit=crop",
+          es: "Pinchos mixtos",
+          en: "Mixed Skewers",
+          art: "chop",
+          time: 40,
+          serv: 4,
+          dif: 1,
+          ing: [
+            ["lomocer", 1],
+            ["puyazo", 1],
+          ],
+          steps: ["Corta las carnes en cubos de 3 cm.", "Arma pinchos alternando carne, chile verde y cebolla.", "Asa 10–12 min girando cada 3 min.", "Termina con sal gruesa y limón."],
+          stepsEn: ["Cube the meats into 1-inch pieces.", "Skewer alternating meat, green pepper and onion.", "Grill 10–12 min, turning every 3 min.", "Finish with coarse salt and lime."],
+        },
+        {
+          id: "r6", photo: "https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?q=70&w=800&auto=format&fit=crop",
+          es: "Chuletas a la plancha",
+          en: "Seared Pork Chops",
+          art: "chop",
+          time: 25,
+          serv: 3,
+          dif: 1,
+          ing: [["chuleta", 2]],
+          steps: [
+            "Seca las chuletas y sazona con sal, pimienta y paprika.",
+            "Calienta la plancha hasta que humee ligeramente.",
+            "Cocina 4 min por lado hasta dorar.",
+            "Reposa 3 min y acompaña con ensalada fresca.",
+          ],
+          stepsEn: ["Pat chops dry; season with salt, pepper and paprika.", "Heat the griddle until lightly smoking.", "Cook 4 min per side until golden.", "Rest 3 min; serve with fresh salad."],
+        },
+      ];
+      /* ================= I18N ================= */ const T = {
+        es: {
+          brandtag: "Carnicería · San Salvador",
+          top: { club: "Club Karbón", recipes: "Recetas", planner: "Planificador", orders: "Mis pedidos", store: "Nuestra tienda" },
+          cats: { all: "Todo", res: "Res", cerdo: "Cerdo", pollo: "Pollo", emb: "Embutidos", pack: "Packs Parrilleros", ofertas: "Ofertas" },
+          search_ph: "¿Qué corte buscas hoy?",
+          h_loy: "Lealtad",
+          h_ord: "Pedidos",
+          cart: "Carrito",
+          foot: "Carne premium · Pedidos digitales · Al carbón",
+          hero_eyebrow: "Maestros del corte · San Salvador",
+          hero_t1: "Del carbón",
+          hero_t2: "a tu mesa.",
+          hero_sub: "Cortes premium seleccionados a mano, madurados en casa y listos para tu parrilla. Pide en línea y recoge sin filas.",
+          hero_cta1: "Ver catálogo",
+          hero_cta2: "Hacer pre-orden",
+          promo1_t: "Especialistas en cortes premium",
+          promo1_s: "Rib eye, lomito y maduración en casa",
+          promo2_t: "Nuevo: Packs parrilleros",
+          promo2_s: "Todo listo para tu asado del fin de semana",
+          trust: ["Selección del día", "Maduración en casa", "Recoge sin filas", "Factura digital al instante"],
+          svc_title: "Servicios digitales",
+          svc_sub: "Comprar carne premium, tan fácil como encender el carbón.",
+          services: [
+            ["invoice", "Factura digital", "Factura electrónica con IVA desglosado al instante, lista para imprimir o guardar.", "checkout"],
+            ["history", "Historial de pedidos", "Consulta tus compras, vuelve a pedir en un clic y descarga facturas.", "orders"],
+            ["loyalty", "Tarjeta de lealtad", "Puntos y sellos en cada compra. Recompensas sin tarjetas físicas.", "loyalty"],
+            ["planner", "Planificación de menú", "Organiza la semana con nuestras recetas y programa la compra.", "planner"],
+            ["recipes", "Recetas de carnes", "Técnica de parrilla, tiempos y los cortes exactos que necesitas.", "recipes"],
+            ["mail", "Emails digitales", "Ofertas, recetas nuevas y recordatorios directo a tu correo.", "news"],
+            ["preorder", "Pre-orden", "Encarga con anticipación cortes especiales para tu evento.", "catalog"],
+            ["pickup", "Orden para recoger", "Pide en línea y pasa a recoger a la hora que elijas.", "catalog"],
+          ],
+          cat_title: "Catálogo",
+          cat_sub: "Cortes frescos del día. Precios por libra salvo indicación.",
+          results: "resultados para",
+          per: "por",
+          add: "Agregar",
+          added: "agregado al carrito",
+          tags: { premium: "Premium", popular: "Popular", sale: "Oferta" },
+          cart_empty: "Tu carrito está vacío",
+          cart_empty2: "Agrega cortes desde el catálogo",
+          subtotal: "Subtotal",
+          iva: "IVA (13%)",
+          total: "Total",
+          checkout: "Continuar al pedido",
+          co_title: "Completar pedido",
+          co_name: "Nombre completo",
+          co_phone: "Teléfono",
+          co_type: "Tipo de pedido",
+          type_pickup: "Orden para recoger",
+          type_pre: "Pre-orden (anticipada)",
+          co_date: "Fecha de recogida",
+          co_time: "Hora",
+          co_pay: "Pago",
+          pay1: "Pagar al recoger",
+          pay2: "Tarjeta (demo)",
+          co_confirm: "Confirmar pedido",
+          co_need: "Escribe tu nombre para continuar",
+          inv_title: "Factura digital",
+          inv_no: "Factura N.º",
+          inv_date: "Fecha",
+          inv_client: "Cliente",
+          inv_final: "Consumidor final",
+          inv_item: "Producto",
+          inv_qty: "Cant.",
+          inv_price: "Precio",
+          inv_tot: "Total",
+          inv_paid: "Pedido confirmado",
+          inv_note: "Documento electrónico generado por KARBÓN · NIT 0614-250190-102-3 · San Salvador",
+          inv_print: "Imprimir / PDF",
+          inv_close: "Cerrar",
+          pickup_at: "Recoger",
+          pre_at: "Pre-orden para",
+          ord_title: "Historial de pedidos",
+          ord_sub: "Todas tus compras en un solo lugar. Toca una para ver su factura digital.",
+          ord_empty: "Aún no tienes pedidos",
+          st: { ready: "Listo para recoger", prep: "En preparación", done: "Entregado" },
+          reorder: "Volver a pedir",
+          viewinv: "Ver factura",
+          items: "artículos",
+          loy_title: "Club Karbón · Tarjeta de lealtad",
+          loy_sub: "Tu tarjeta vive en tu teléfono. Muestra el código en caja o úsala al pedir en línea.",
+          loy_member: "MIEMBRO",
+          loy_pts: "puntos",
+          loy_tier: "Parrillero Oro",
+          loy_next: "para tu próxima recompensa",
+          loy_stamps: "Sellos de compra",
+          loy_stamp_note: "1 sello por pedido · 8 sellos = 1 lb de chorizo artesanal gratis",
+          loy_how_t: "¿Cómo funciona?",
+          loy_how: [
+            "Gana 1 punto por cada $1 en compras.",
+            "Cada pedido suma 1 sello a tu tarjeta.",
+            "Al llegar a 200 puntos, canjeas $10 de descuento.",
+            "Los sellos completos se canjean en tienda al instante.",
+          ],
+          plan_title: "Planificación de menú",
+          plan_sub: "Organiza la semana y programa la compra de todo lo que necesitas en un solo pedido.",
+          plan_add: "+ Agregar comida",
+          plan_pick: "Elige una receta",
+          plan_custom: "O escribe tu propio platillo",
+          plan_custom_ph: "Ej. Sopa de res",
+          plan_sched: "Programar compra de la semana",
+          plan_cta: "Agregar todo al carrito",
+          wa_order: "Pedir por WhatsApp",
+          wa_hi: "Hola KARBÓN 👋 Quiero hacer un pedido:",
+          wa_browse: "Quiero información sobre sus cortes.",
+          wa_name: "Mi nombre:",
+          store_title: "Nuestra tienda",
+          store_sub: "Visítanos en San Salvador o pide en línea y pasa a recoger sin filas.",
+          store_story_t: "Maestros del corte desde el primer día",
+          store_story:
+            "KARBÓN nació del amor por la parrilla salvadoreña. Seleccionamos cada corte a mano, lo maduramos en casa y lo preparamos al carbón — porque la buena carne no se apura. Hoy combinamos la tradición del mercado con pedidos digitales, factura al instante y recompensas por tu lealtad.",
+          store_hours_t: "Horario",
+          store_hours: [
+            ["Lunes – Viernes", "8:00 AM – 6:00 PM"],
+            ["Sábado", "7:00 AM – 5:00 PM"],
+            ["Domingo", "7:00 AM – 1:00 PM"],
+          ],
+          store_map: "Ver en Google Maps",
+          store_call: "Llámanos",
+          store_visit: "San Salvador, El Salvador",
+          plan_sched_sub: "Agrega al carrito los cortes de todas tus recetas planificadas.",
+          plan_none: "Planifica al menos una receta para programar tu compra",
+          plan_done: "Ingredientes de la semana agregados al carrito",
+          days: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+          rec_title: "Recetas de carnes",
+          rec_sub: "Técnica de parrilla y los cortes exactos para lograrlo.",
+          rec_min: "min",
+          rec_serv: "porciones",
+          rec_dif: ["Fácil", "Media", "Avanzada"],
+          rec_view: "Ver receta",
+          rec_buy: "Comprar ingredientes",
+          rec_plan: "Al planificador",
+          rec_ing: "Ingredientes de Karbón",
+          rec_steps: "Preparación",
+          news_title: "Emails digitales",
+          news_sub: "Recetas nuevas, ofertas de temporada y recordatorios de tus pedidos. Sin spam, solo carne.",
+          news_ph: "tu@correo.com",
+          news_btn: "Suscribirme",
+          news_ok: "¡Listo! Revisa tu bandeja de entrada",
+          news_prefs: ["Ofertas y promociones", "Recetas semanales", "Recordatorios de pedidos"],
+          news_bad: "Escribe un correo válido",
+          choose_day: "¿Para qué día?",
+          save: "Guardar",
+          cancel: "Cancelar",
+          demo: "Demo",
+          pts_earned: "puntos ganados",
+          f_shop: "Comprar",
+          f_svcs: "Servicios",
+          f_contact: "Contacto",
+          f_blurb: "Carnicería premium al carbón en San Salvador. Cortes seleccionados, maduración en casa y servicio digital.",
+        },
+        en: {
+          brandtag: "Butchers · San Salvador",
+          top: { club: "Karbón Club", recipes: "Recipes", planner: "Meal planner", orders: "My orders", store: "Our store" },
+          cats: { all: "All", res: "Beef", cerdo: "Pork", pollo: "Chicken", emb: "Sausages", pack: "Grill Packs", ofertas: "Offers" },
+          search_ph: "What cut are you looking for?",
+          h_loy: "Loyalty",
+          h_ord: "Orders",
+          cart: "Cart",
+          foot: "Premium meats · Digital ordering · Charcoal-fired",
+          hero_eyebrow: "Masters of the cut · San Salvador",
+          hero_t1: "From the charcoal",
+          hero_t2: "to your table.",
+          hero_sub: "Hand-selected premium cuts, aged in house and ready for your grill. Order online, pick up with no lines.",
+          hero_cta1: "Browse catalog",
+          hero_cta2: "Place a pre-order",
+          promo1_t: "Premium cut specialists",
+          promo1_s: "Rib eye, tenderloin and in-house aging",
+          promo2_t: "New: Grill packs",
+          promo2_s: "Everything ready for your weekend BBQ",
+          trust: ["Selected daily", "Aged in house", "Skip-the-line pickup", "Instant digital invoice"],
+          svc_title: "Digital services",
+          svc_sub: "Buying premium meat, as easy as lighting the charcoal.",
+          services: [
+            ["invoice", "Digital invoice", "Electronic invoice with itemized VAT instantly, ready to print or save.", "checkout"],
+            ["history", "Order history", "Review purchases, reorder in one click and download invoices.", "orders"],
+            ["loyalty", "Loyalty card", "Points and stamps with every purchase. Rewards, no plastic cards.", "loyalty"],
+            ["planner", "Menu planning", "Organize your week with our recipes and schedule the shopping.", "planner"],
+            ["recipes", "Meat recipes", "Grill technique, timing and the exact cuts you need.", "recipes"],
+            ["mail", "Digital emails", "Deals, new recipes and reminders straight to your inbox.", "news"],
+            ["preorder", "Pre-order", "Order special cuts ahead of time for your event.", "catalog"],
+            ["pickup", "Order for pickup", "Order online and pick up at the time you choose.", "catalog"],
+          ],
+          cat_title: "Catalog",
+          cat_sub: "Fresh cuts of the day. Prices per pound unless noted.",
+          results: "results for",
+          per: "per",
+          add: "Add",
+          added: "added to cart",
+          tags: { premium: "Premium", popular: "Popular", sale: "Sale" },
+          cart_empty: "Your cart is empty",
+          cart_empty2: "Add cuts from the catalog",
+          subtotal: "Subtotal",
+          iva: "VAT (13%)",
+          total: "Total",
+          checkout: "Continue to order",
+          co_title: "Complete your order",
+          co_name: "Full name",
+          co_phone: "Phone",
+          co_type: "Order type",
+          type_pickup: "Order for pickup",
+          type_pre: "Pre-order (advance)",
+          co_date: "Pickup date",
+          co_time: "Time",
+          co_pay: "Payment",
+          pay1: "Pay at pickup",
+          pay2: "Card (demo)",
+          co_confirm: "Confirm order",
+          co_need: "Enter your name to continue",
+          inv_title: "Digital invoice",
+          inv_no: "Invoice No.",
+          inv_date: "Date",
+          inv_client: "Customer",
+          inv_final: "Final consumer",
+          inv_item: "Item",
+          inv_qty: "Qty",
+          inv_price: "Price",
+          inv_tot: "Total",
+          inv_paid: "Order confirmed",
+          inv_note: "Electronic document issued by KARBÓN · Tax ID 0614-250190-102-3 · San Salvador",
+          inv_print: "Print / PDF",
+          inv_close: "Close",
+          pickup_at: "Pickup",
+          pre_at: "Pre-order for",
+          ord_title: "Order history",
+          ord_sub: "All your purchases in one place. Tap one to see its digital invoice.",
+          ord_empty: "No orders yet",
+          st: { ready: "Ready for pickup", prep: "Being prepared", done: "Delivered" },
+          reorder: "Reorder",
+          viewinv: "View invoice",
+          items: "items",
+          loy_title: "Karbón Club · Loyalty card",
+          loy_sub: "Your card lives on your phone. Show the code at checkout or use it ordering online.",
+          loy_member: "MEMBER",
+          loy_pts: "points",
+          loy_tier: "Gold Griller",
+          loy_next: "to your next reward",
+          loy_stamps: "Purchase stamps",
+          loy_stamp_note: "1 stamp per order · 8 stamps = 1 lb of free artisan chorizo",
+          loy_how_t: "How it works",
+          loy_how: ["Earn 1 point per $1 spent.", "Every order adds 1 stamp to your card.", "At 200 points, redeem $10 off.", "Full stamp cards are redeemed in store instantly."],
+          plan_title: "Menu planning",
+          plan_sub: "Organize the week and schedule everything you need in a single order.",
+          plan_add: "+ Add meal",
+          plan_pick: "Pick a recipe",
+          plan_custom: "Or type your own dish",
+          plan_custom_ph: "e.g. Beef soup",
+          plan_sched: "Schedule the week's shopping",
+          plan_cta: "Add it all to the cart",
+          wa_order: "Order via WhatsApp",
+          wa_hi: "Hi KARBÓN 👋 I'd like to place an order:",
+          wa_browse: "I'd like more info about your cuts.",
+          wa_name: "My name:",
+          store_title: "Our store",
+          store_sub: "Visit us in San Salvador, or order online and pick up with no lines.",
+          store_story_t: "Masters of the cut from day one",
+          store_story:
+            "KARBÓN was born from a love of Salvadoran grilling. We hand-select every cut, age it in house and fire it over charcoal — because good meat can't be rushed. Today we blend market tradition with digital ordering, instant invoicing and loyalty rewards.",
+          store_hours_t: "Opening hours",
+          store_hours: [
+            ["Monday – Friday", "8:00 AM – 6:00 PM"],
+            ["Saturday", "7:00 AM – 5:00 PM"],
+            ["Sunday", "7:00 AM – 1:00 PM"],
+          ],
+          store_map: "View on Google Maps",
+          store_call: "Call us",
+          store_visit: "San Salvador, El Salvador",
+          plan_sched_sub: "Adds every planned recipe's cuts to your cart.",
+          plan_none: "Plan at least one recipe to schedule your shopping",
+          plan_done: "Week's ingredients added to cart",
+          days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          rec_title: "Meat recipes",
+          rec_sub: "Grill technique and the exact cuts to nail it.",
+          rec_min: "min",
+          rec_serv: "servings",
+          rec_dif: ["Easy", "Medium", "Advanced"],
+          rec_view: "View recipe",
+          rec_buy: "Buy ingredients",
+          rec_plan: "To planner",
+          rec_ing: "Karbón ingredients",
+          rec_steps: "Steps",
+          news_title: "Digital emails",
+          news_sub: "New recipes, seasonal deals and order reminders. No spam, just meat.",
+          news_ph: "you@email.com",
+          news_btn: "Subscribe",
+          news_ok: "Done! Check your inbox",
+          news_prefs: ["Deals & promotions", "Weekly recipes", "Order reminders"],
+          news_bad: "Enter a valid email",
+          choose_day: "Which day?",
+          save: "Save",
+          cancel: "Cancel",
+          demo: "Demo",
+          pts_earned: "points earned",
+          f_shop: "Shop",
+          f_svcs: "Services",
+          f_contact: "Contact",
+          f_blurb: "Charcoal-fired premium butcher shop in San Salvador. Selected cuts, in-house aging and digital service.",
+        },
+      };
+      /* ================= STATE ================= */ let S = {
+        lang: "es",
+        view: "home",
+        cat: "all",
+        q: "",
+        cart: {},
+        orders: [],
+        points: 87,
+        stamps: 3,
+        orderNo: 1041,
+        plan: [[], [], [], [], [], [], []],
+        subscribed: false,
+        name: "",
+        phone: "",
+      };
+      S.orders = [
+        {
+          no: "KB-1041",
+          demo: true,
+          when: "2026-07-20 · 4:30 PM",
+          type: "pickup",
+          status: "prep",
+          name: "Andrea",
+          items: [
+            ["puyazo", 2],
+            ["chorizo", 1],
+          ],
+        },
+        { no: "KB-1039", demo: true, when: "2026-07-12 · 11:00 AM", type: "pre", status: "done", name: "Andrea", items: [["packfam", 1]] },
+      ];
+      const $ = (id) => document.getElementById(id);
+      const t = () => T[S.lang];
+      const P = (id) => PRODUCTS.find((p) => p.id === id);
+      const pname = (p) => (S.lang === "es" ? p.es : p.en);
+      const pdesc = (p) => (S.lang === "es" ? p.des : p.den);
+      const pprice = (p) => p.sale || p.price;
+      const money = (n) => "$" + n.toFixed(2);
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      function orderTotals(items) {
+        const sub = items.reduce((a, [id, q]) => a + pprice(P(id)) * q, 0);
+        return { sub, iva: sub * 0.13, tot: sub * 1.13 };
+      }
+      const WA_NUM = "50377770000";
+      function waLink() {
+        const i = t();
+        const items = Object.entries(S.cart);
+        let m = i.wa_hi + "\n";
+        if (items.length) {
+          items.forEach(([id, q]) => {
+            const p = P(id);
+            m += `• ${q} ${p.unit === "pack" ? "pack" : "lb"} — ${pname(p)} (${money(pprice(p) * q)})\n`;
+          });
+          m += `${i.total}: ${money(orderTotals(items).tot)}\n`;
+          m += i.wa_name + " " + (S.name || "");
+        } else {
+          m += i.wa_browse;
+        }
+        return "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent(m.trim());
+      }
+      function waOrder() {
+        window.open(waLink(), "_blank");
+      }
+      function toast(msg) {
+        const el = $("toast");
+        el.innerHTML = msg;
+        el.classList.add("show");
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => el.classList.remove("show"), 2600);
+      }
+      /* ================= NAV / RENDER ================= */ function go(v, opt) {
+        S.view = v;
+        if (v !== "catalog") {
+          S.q = "";
+        }
+        render();
+        window.scrollTo({ top: 0 });
+        if (v === "home" && opt === "news") {
+          setTimeout(() => $("newsbox")?.scrollIntoView({ behavior: "smooth" }), 60);
+        }
+        if (v === "home" && opt === "store") {
+          setTimeout(() => $("storebox")?.scrollIntoView({ behavior: "smooth" }), 60);
+        }
+      }
+      function setLang(l) {
+        S.lang = l;
+        render();
+      }
+      function setCat(c) {
+        S.cat = c;
+        S.q = "";
+        S.view = "catalog";
+        render();
+        window.scrollTo({ top: 0 });
+      }
+      function doSearch() {
+        S.q = $("q").value.trim();
+        S.cat = "all";
+        S.view = "catalog";
+        render();
+      }
+      function render() {
+        const i = t();
+        $("brandtag").textContent = i.brandtag;
+        $("q").placeholder = i.search_ph;
+        $("h-loy").textContent = i.h_loy;
+        $("h-ord").textContent = i.h_ord;
+        $("cartlbl").textContent = i.cart;
+        $("foot-tag").textContent = i.foot;
+        $("topbar").innerHTML =
+          `     <button onclick="go('loyalty')">${i.top.club}</button>     <button onclick="go('recipes')">${i.top.recipes}</button>     <button onclick="go('planner')">${i.top.planner}</button>     <button onclick="go('orders')">${i.top.orders}</button>     <span class="sp"></span>     <button onclick="go('home','store')">${i.top.store}</button>     <div class="lang">       <button class="${S.lang === "es" ? "on" : ""}" onclick="setLang('es')">ES</button>       <button class="${S.lang === "en" ? "on" : ""}" onclick="setLang('en')">EN</button>     </div>`;
+        const cats = ["all", "res", "cerdo", "pollo", "emb", "pack", "ofertas"];
+        $("catnav").innerHTML =
+          cats
+            .map(
+              (c) => `<button class="${S.view === "catalog" && S.cat === c ? "on" : ""} ${c === "ofertas" ? "hot" : ""}" onclick="setCat('${c}')">${i.cats[c]}</button>`,
+            )
+            .join("") + `<span class="sp"></span><button onclick="go('recipes')">${i.top.recipes}</button>`;
+        const n = Object.values(S.cart).reduce((a, b) => a + b, 0);
+        $("cartbadge").style.display = n ? "flex" : "none";
+        $("cartbadge").textContent = n;
+        $("carttot").textContent = n ? money(orderTotals(Object.entries(S.cart)).tot) : "";
+        $("fcols").innerHTML =
+          `     <div><div class="wordmark"><span class="km" style="font-size:22px">KARBÓN</span></div><p style="color:var(--dim);font-size:13px;margin-top:10px;max-width:280px">${i.f_blurb}</p></div>     <div><h5>${i.f_shop}</h5>${["res", "cerdo", "pollo", "emb", "pack"].map((c) => `<button onclick="setCat('${c}')">${i.cats[c]}</button>`).join("")}</div>     <div><h5>${i.f_svcs}</h5><button onclick="go('loyalty')">${i.top.club}</button><button onclick="go('planner')">${i.top.planner}</button><button onclick="go('orders')">${i.top.orders}</button><button onclick="go('recipes')">${i.top.recipes}</button></div>     <div><h5>${i.f_contact}</h5><button>San Salvador, El Salvador</button><button>+503 7777-0000</button><button>hola@karbon.sv</button></div>`;
+        $("view").innerHTML = { home: vHome, catalog: vCatalog, orders: vOrders, loyalty: vLoyalty, planner: vPlanner, recipes: vRecipes }[S.view]();
+        if (S.view === "loyalty") drawBars();
+        revealInit();
+      }
+      function revealInit() {
+        if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const els = document.querySelectorAll("#view .card, #view .prod, #view .promo, #view .rec, #view .day, #view .trust .it, #view .news, #view .store > *, #view .order, #view .lcard");
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("io-in");
+                io.unobserve(en.target);
+                setTimeout(() => en.target.classList.remove("io-pre", "io-in"), 700);
+              }
+            }),
+          { threshold: 0.06 },
+        );
+        els.forEach((el) => {
+          el.classList.add("io-pre");
+          io.observe(el);
+        });
+      }
+      /* ================= VIEWS ================= */ function head(tt, sub) {
+        return `<div class="section-head"><div><div class="eyebrow">Karbón</div><h2>${tt}</h2><p class="sub" style="margin-top:4px">${sub}</p></div></div><div style="height:18px"></div>`;
+      }
+      const HERO_PHOTO = "https://images.unsplash.com/photo-1508615263227-c5d58c1e5821?q=70&w=1800&auto=format&fit=crop";
+      const STORE_PHOTO = "https://images.unsplash.com/photo-1560166444-441876015a70?q=70&w=1100&auto=format&fit=crop";
+      const ICO = {
+        invoice: `<svg viewBox="0 0 24 24"><path d="M7 3h10a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 12h6"/></svg>`,
+        history: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+        loyalty: `<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>`,
+        planner: `<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>`,
+        recipes: `<svg viewBox="0 0 24 24"><path d="M12 3c-1 3-5 4-5 8a5 5 0 0 0 10 0c0-4-4-5-5-8z"/><path d="M12 21v-4"/></svg>`,
+        mail: `<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
+        preorder: `<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>`,
+        pickup: `<svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8z"/><path d="M8 8a4 4 0 0 1 8 0"/></svg>`,
+      };
+      function vHome() {
+        const i = t();
+        return `   <div class="herowrap">     <section class="hero">       <img class="hbg" src="${HERO_PHOTO}" alt="" onerror="this.remove()">       <div class="hshade"></div>       <div class="hin">         <div class="eyebrow">${i.hero_eyebrow}</div>         <h1>${i.hero_t1} <span class="l2">${i.hero_t2}</span></h1>         <p class="sub">${i.hero_sub}</p>         <div class="cta">           <button class="btn btn-r" onclick="go('catalog')">${i.hero_cta1}</button>           <button class="btn btn-g" onclick="go('catalog')">${i.hero_cta2}</button>         </div>       </div>     </section>     <div class="promos">       <div class="promo p1" onclick="setCat('res')">         <div class="pimg"><img src="${P("ribeye").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo1_t}</h3><p>${i.promo1_s}</p></div>       </div>       <div class="promo p2" onclick="setCat('pack')">         <div class="pimg"><img src="${P("packfam").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo2_t}</h3><p>${i.promo2_s}</p></div>       </div>     </div>   </div>   <div class="trust">${i.trust.map((x) => `<div class="it"><b>${x}</b></div>`).join("")}</div>   <div class="section-head"><div><h2>${i.svc_title}</h2><p class="sub" style="margin-top:4px">${i.svc_sub}</p></div></div>   <div class="grid services">${i.services
+          .map((s) => {
+            const target = s[3];
+            const click = target === "checkout" ? "go('catalog')" : target === "news" ? "go('home','news')" : `go('${target}')`;
+            return `<div class="card svc" onclick="${click}"><span class="go">→</span><div class="ic">${ICO[s[0]] || ""}</div><h3>${s[1]}</h3><p>${s[2]}</p></div>`;
+          })
+          .join("")}</div>   ${storeBox()}   ${newsBox()}`;
+      }
+      function storeBox() {
+        const i = t();
+        const day = new Date().getDay(); // 0=Sun
+        const todayIx = day === 0 ? 2 : day === 6 ? 1 : 0;
+        return `<section class="store" id="storebox">
+          <div>
+            <div class="eyebrow">${i.store_title}</div>
+            <h2 style="font-family:var(--disp);text-transform:uppercase;letter-spacing:.05em">${i.store_title}</h2>
+            <p class="sub" style="margin-top:6px">${i.store_sub}</p>
+            <div class="s-photo"><img src="${STORE_PHOTO}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>
+            <h3 style="margin-top:22px;font-size:15.5px">${i.store_story_t}</h3>
+            <p class="s-story">${i.store_story}</p>
+            <a class="s-map" href="https://www.google.com/maps/search/?api=1&query=San+Salvador,+El+Salvador" target="_blank" rel="noopener">${i.store_map} →</a>
+          </div>
+          <div class="card">
+            <h3 class="disp" style="font-size:13px;margin-bottom:12px;color:var(--gold);letter-spacing:.15em">${i.store_hours_t}</h3>
+            <div class="hours">${i.store_hours.map((h, ix) => `<div class="hrow ${ix === todayIx ? "today" : ""}"><span>${h[0]}</span><b>${h[1]}</b></div>`).join("")}</div>
+            <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+              <button class="btn btn-w" style="flex:1;min-width:150px" onclick="waOrder()">${i.wa_order}</button>
+              <a class="btn btn-s" style="flex:1;min-width:130px;text-align:center;text-decoration:none" href="tel:+50377770000">${i.store_call}</a>
+            </div>
+            <div style="color:var(--dim);font-size:12.5px;margin-top:14px">${i.store_visit} · +503 7777-0000 · hola@karbon.sv</div>
+          </div>
+        </section>`;
+      }
+      function newsBox() {
+        const i = t();
+        return `<section class="news" id="newsbox">     <div class="eyebrow">${i.news_title}</div>     <h2>${i.news_title}</h2>     <p class="sub">${i.news_sub}</p>     ${S.subscribed ? `<p style="margin-top:16px;color:var(--green);font-weight:700">✓ ${i.news_ok}</p>` : `<div class="frm"><input type="email" id="nemail" placeholder="${i.news_ph}"><button class="btn btn-p" onclick="subscribe()">${i.news_btn}</button></div>          <div class="prefs">${i.news_prefs.map((p, ix) => `<label><input type="checkbox" checked id="pref${ix}"> ${p}</label>`).join("")}</div>`}   </section>`;
+      }
+      function subscribe() {
+        const v = ($("nemail").value || "").trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
+          toast(t().news_bad);
+          return;
+        }
+        S.subscribed = true;
+        render();
+        toast("✓ " + t().news_ok);
+      }
+      function vCatalog() {
+        const i = t();
+        let list = PRODUCTS.filter((p) => S.cat === "all" || (S.cat === "ofertas" ? p.sale : p.cat === S.cat));
+        if (S.q) {
+          const q = S.q.toLowerCase();
+          list = PRODUCTS.filter((p) => (p.es + " " + p.en + " " + p.des + " " + p.den).toLowerCase().includes(q));
+        }
+        const cats = ["all", "res", "cerdo", "pollo", "emb", "pack", "ofertas"];
+        return `   <div class="section-head"><div><div class="eyebrow">Karbón</div><h2>${S.q ? `${list.length} ${i.results} “${esc(S.q)}”` : S.cat === "all" ? i.cat_title : i.cats[S.cat]}</h2><p class="sub" style="margin-top:4px">${i.cat_sub}</p></div></div>   <div class="toolrow">${cats.map((c) => `<button class="${!S.q && S.cat === c ? "on" : ""}" onclick="setCat('${c}')">${i.cats[c]}</button>`).join("")}</div>   <div class="grid products">${list.map((p) => `     <div class="prod">       <div class="img">${p.sale ? `<span class="tag sale">${i.tags.sale}</span>` : p.tag ? `<span class="tag ${p.tag}">${i.tags[p.tag]}</span>` : ""}${art(p.art, 118)}${p.photo ? `<img src="${p.photo}" alt="${pname(p)}" loading="lazy" onerror="this.remove()">` : ""}</div>       <div class="bd">         <h3>${pname(p)}</h3><div class="desc">${pdesc(p)}</div>         <div class="prow">           <div class="price">${p.sale ? `<span class="old">${money(p.price)}</span><span class="now">${money(p.sale)}</span>` : money(p.price)} <small>/ ${p.unit === "pack" ? "pack" : i.per + " lb"}</small></div>           <button class="add" onclick="addCart('${p.id}')">+ ${i.add}</button>         </div>       </div>     </div>`).join("")}   </div>`;
+      }
+      function addCart(id, q) {
+        S.cart[id] = (S.cart[id] || 0) + (q || 1);
+        render();
+        toast(`<b>${pname(P(id))}</b> ${t().added}`);
+      }
+      /* ================= CART / CHECKOUT ================= */ let drawerMode = "cart";
+      function openCart() {
+        drawerMode = "cart";
+        renderDrawer();
+        $("ovl").classList.add("show");
+        $("drawer").classList.add("show");
+      }
+      function closeAll() {
+        $("ovl").classList.remove("show");
+        $("drawer").classList.remove("show");
+        $("modal").classList.remove("show");
+      }
+      function chg(id, d) {
+        S.cart[id] = (S.cart[id] || 0) + d;
+        if (S.cart[id] <= 0) delete S.cart[id];
+        render();
+        renderDrawer();
+      }
+      function renderDrawer() {
+        const i = t();
+        const items = Object.entries(S.cart);
+        if (drawerMode === "cart") {
+          $("dtitle").textContent = i.cart;
+          if (!items.length) {
+            $("dbody").innerHTML = `<div class="empty"><div style="margin-bottom:10px">${art("steak", 80)}</div><b>${i.cart_empty}</b><br><span style="font-size:13px">${i.cart_empty2}</span></div>`;
+            $("dfoot").innerHTML = `<button class="btn btn-g" style="width:100%" onclick="closeAll();go('catalog')">${i.hero_cta1}</button>`;
+            return;
+          }
+          const tt = orderTotals(items);
+          $("dbody").innerHTML = items
+            .map(([id, q]) => {
+              const p = P(id);
+              return `       <div class="citem">         <div class="ci">${art(p.art, 42)}${p.photo ? `<img src="${p.photo}" alt="" onerror="this.remove()">` : ""}</div>         <div class="nm"><b>${pname(p)}</b><span>${money(pprice(p))} / ${p.unit === "pack" ? "pack" : "lb"}</span></div>         <div class="qty"><button onclick="chg('${id}',-1)">−</button><b>${q}</b><button onclick="chg('${id}',1)">+</button></div>       </div>`;
+            })
+            .join("");
+          $("dfoot").innerHTML =
+            `       <div class="trow"><span>${i.subtotal}</span><span>${money(tt.sub)}</span></div>       <div class="trow"><span>${i.iva}</span><span>${money(tt.iva)}</span></div>       <div class="trow tt"><span>${i.total}</span><span>${money(tt.tot)}</span></div>       <button class="btn btn-r" style="width:100%;margin-top:14px" onclick="drawerMode='checkout';renderDrawer()">${i.checkout} →</button>       <button class="btn btn-w" style="width:100%;margin-top:8px" onclick="waOrder()">${i.wa_order}</button>`;
+        } else {
+          $("dtitle").textContent = i.co_title;
+          const today = new Date();
+          const d2 = new Date(today);
+          d2.setDate(d2.getDate() + 1);
+          const minPick = today.toISOString().slice(0, 10),
+            minPre = d2.toISOString().slice(0, 10);
+          const tt = orderTotals(items);
+          $("dbody").innerHTML =
+            `       <label class="f">${i.co_name}</label><input type="text" id="co-name" value="${esc(S.name)}" placeholder="Andrea Novoa">       <div style="height:12px"></div>       <label class="f">${i.co_phone}</label><input type="tel" id="co-phone" value="${esc(S.phone)}" placeholder="7777-0000">       <div style="height:12px"></div>       <label class="f">${i.co_type}</label>       <select id="co-type" onchange="$('co-date').min=this.value==='pre'?'${minPre}':'${minPick}'">         <option value="pickup">${i.type_pickup}</option>         <option value="pre">${i.type_pre}</option>       </select>       <div style="height:12px"></div>       <div class="row2">         <div><label class="f">${i.co_date}</label><input type="date" id="co-date" min="${minPick}" value="${minPick}"></div>         <div><label class="f">${i.co_time}</label><select id="co-time">${["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"].map((h) => `<option>${h}</option>`).join("")}</select></div>       </div>       <div style="height:12px"></div>       <label class="f">${i.co_pay}</label>       <select id="co-pay"><option>${i.pay1}</option><option>${i.pay2}</option></select>`;
+          $("dfoot").innerHTML =
+            `       <div class="trow tt"><span>${i.total}</span><span>${money(tt.tot)}</span></div>       <button class="btn btn-r" style="width:100%;margin-top:12px" onclick="confirmOrder()">${i.co_confirm} ✓</button>       <button class="btn btn-s" style="width:100%;margin-top:8px" onclick="drawerMode='cart';renderDrawer()">← ${i.cart}</button>`;
+        }
+      }
+      function confirmOrder() {
+        const i = t();
+        const name = $("co-name").value.trim();
+        if (!name) {
+          toast(i.co_need);
+          return;
+        }
+        S.name = name;
+        S.phone = $("co-phone").value.trim();
+        const items = Object.entries(S.cart).map(([id, q]) => [id, q]);
+        const type = $("co-type").value;
+        const dt = $("co-date").value,
+          tm = $("co-time").value;
+        const tt = orderTotals(items);
+        S.orderNo++;
+        const o = { no: "KB-" + S.orderNo, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, items };
+        S.orders.unshift(o);
+        const pts = Math.round(tt.tot);
+        S.points += pts;
+        S.stamps = Math.min(8, S.stamps + 1);
+        S.cart = {};
+        closeAll();
+        render();
+        showInvoice(o);
+        setTimeout(() => toast(`+${pts} ${i.pts_earned}`), 700);
+      }
+      /* ================= INVOICE ================= */ function showInvoice(o) {
+        const i = t();
+        const tt = orderTotals(o.items);
+        const typeLabel = o.type === "pre" ? i.pre_at : i.pickup_at;
+        $("mbox").innerHTML =
+          `     <button class="x" onclick="closeAll()">✕</button>     <div class="eyebrow">${i.inv_title}</div>     <div class="inv" id="invdoc">       <div class="top">         <div class="lg">KARBÓN<small>CARNICERÍA PREMIUM · SAN SALVADOR</small></div>         <div class="meta"><b>${i.inv_no} ${o.no}</b><br>${i.inv_date}: ${o.when}<br>${i.inv_client}: ${esc(o.name) || i.inv_final}</div>       </div>       <div style="font-size:12px;color:#6f6250;margin-bottom:4px">${typeLabel}: <b style="color:#26201a">${o.when}</b></div>       <table>         <tr><th>${i.inv_item}</th><th class="tr">${i.inv_qty}</th><th class="tr">${i.inv_price}</th><th class="tr">${i.inv_tot}</th></tr>         ${o.items
+            .map(([id, q]) => {
+              const p = P(id);
+              return `<tr><td>${pname(p)}</td><td class="tr">${q}</td><td class="tr">${money(pprice(p))}</td><td class="tr">${money(pprice(p) * q)}</td></tr>`;
+            })
+            .join(
+              "",
+            )}       </table>       <div class="tots">         <div><span>${i.subtotal}</span><b>${money(tt.sub)}</b></div>         <div><span>${i.iva}</span><b>${money(tt.iva)}</b></div>         <div class="g"><span>${i.total}</span><span>${money(tt.tot)}</span></div>       </div>       <div style="text-align:center"><span class="stamp">✓ ${i.inv_paid}</span></div>       <div class="foot">${i.inv_note}</div>     </div>     <div style="display:flex;gap:10px;margin-top:16px">       <button class="btn btn-p" style="flex:1" onclick="window.print()">${i.inv_print}</button>       <button class="btn btn-g" onclick="closeAll()">${i.inv_close}</button>     </div>`;
+        $("modal").classList.add("show");
+      }
+      /* ================= ORDERS ================= */ function vOrders() {
+        const i = t();
+        if (!S.orders.length) return head(i.ord_title, i.ord_sub) + `<div class="empty"><b>${i.ord_empty}</b></div>`;
+        return (
+          head(i.ord_title, i.ord_sub) +
+          `<div class="grid">${S.orders
+            .map((o, ix) => {
+              const tt = orderTotals(o.items);
+              return `<div class="card order">       <div class="oi">${art(P(o.items[0][0]).art, 44)}${P(o.items[0][0]).photo ? `<img src="${P(o.items[0][0]).photo}" alt="" onerror="this.remove()">` : ""}</div>       <div class="om"><b>${o.no} ${o.demo ? `<span class="chip" style="margin-left:6px">${i.demo}</span>` : ""}</b>         <span>${o.when} · ${o.items.reduce((a, [, q]) => a + q, 0)} ${i.items} · <b style="color:var(--gold)">${money(tt.tot)}</b></span></div>       <span class="st ${o.status}">${i.st[o.status]}</span>       <div style="display:flex;gap:8px">         <button class="btn btn-s" onclick='showInvoice(S.orders[${ix}])'>${i.viewinv}</button>         <button class="btn btn-s" onclick="reorder(${ix})">${i.reorder}</button>       </div>     </div>`;
+            })
+            .join("")}</div>`
+        );
+      }
+      function reorder(ix) {
+        S.orders[ix].items.forEach(([id, q]) => (S.cart[id] = (S.cart[id] || 0) + q));
+        render();
+        openCart();
+      }
+      /* ================= LOYALTY ================= */ function vLoyalty() {
+        const i = t();
+        const next = 200,
+          prog = Math.min(100, ((S.points % next) / next) * 100);
+        return (
+          head(i.loy_title, i.loy_sub) +
+          `   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px">     <div>       <div class="lcard">         <div class="brand2"><span class="wm steel">KARBÓN</span><span class="tier">${i.loy_tier}</span></div>         <div class="pts steel">${S.points} <small>${i.loy_pts}</small></div>         <div class="pbar"><i style="width:${prog}%"></i></div>         <div style="font-size:12px;color:var(--muted);margin-top:6px">${S.points % next}/${next} ${i.loy_next}</div>         <div class="id">${i.loy_member} · ${(esc(S.name) || "ANDREA N.").toUpperCase()} · KBN-2026-0847</div>         <div class="bars" id="bars"></div>       </div>     </div>     <div>       <div class="card">         <h3 class="disp" style="font-size:14px;margin-bottom:4px">${i.loy_stamps}</h3>         <p style="color:var(--muted);font-size:12.5px;margin-bottom:14px">${i.loy_stamp_note}</p>         <div class="stamps">${Array.from({ length: 8 }, (_, k) => `<div class="stampc ${k < S.stamps ? "f" : ""}">${k < S.stamps ? "♦" : k + 1}</div>`).join("")}</div>       </div>       <div class="card" style="margin-top:16px">         <h3 class="disp" style="font-size:14px;margin-bottom:10px">${i.loy_how_t}</h3>         ${i.loy_how.map((h) => `<div style="display:flex;gap:10px;padding:5px 0;color:var(--muted);font-size:13.5px"><span style="color:var(--gold)">◆</span>${h}</div>`).join("")}       </div>     </div>   </div>`
+        );
+      }
+      function drawBars() {
+        const el = $("bars");
+        if (!el) return;
+        let h = "";
+        for (let k = 0; k < 46; k++) {
+          const v = (k * 7919) % 23;
+          h += `<i style="height:${8 + (v % 3 === 0 ? 24 : v % 2 === 0 ? 15 : 8)}px"></i>`;
+        }
+        el.innerHTML = h;
+      }
+      /* ================= PLANNER ================= */ function vPlanner() {
+        const i = t();
+        return (
+          head(i.plan_title, i.plan_sub) +
+          `   <div class="card" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;border-color:rgba(210,167,92,.4)">     <div style="flex:1;min-width:230px"><b class="disp" style="font-size:13.5px">${i.plan_sched}</b><div style="color:var(--muted);font-size:13px">${i.plan_sched_sub}</div></div>     <button class="btn btn-p" onclick="schedulePlan()">${i.plan_cta} →</button>   </div>   <div class="grid week">${i.days.map((d, ix) => `     <div class="day"><h4>${d}</h4>       <div class="slot">${S.plan[ix].map((m, mi) => `<div class="meal"><span>${esc(m.name)}</span><button onclick="S.plan[${ix}].splice(${mi},1);render()">✕</button></div>`).join("")}</div>       <button class="dayadd" onclick="pickMeal(${ix})">${i.plan_add}</button>     </div>`).join("")}   </div>`
+        );
+      }
+      function pickMeal(day) {
+        const i = t();
+        $("mbox").innerHTML =
+          `     <button class="x" onclick="closeAll()">✕</button>     <h2 style="margin-bottom:14px;font-size:19px">${i.days[day]} — ${i.plan_pick}</h2>     <div class="grid" style="gap:8px">${RECIPES.map((r) => `       <button class="btn btn-g" style="text-align:left;display:flex;gap:12px;align-items:center;text-transform:none;letter-spacing:0;font-family:var(--sans)" onclick="addMeal(${day},'${r.id}')">         ${art(r.art, 34)} ${S.lang === "es" ? r.es : r.en}</button>`).join("")}     </div>     <div style="height:14px"></div>     <label class="f">${i.plan_custom}</label>     <div style="display:flex;gap:10px"><input type="text" id="custommeal" placeholder="${i.plan_custom_ph}"><button class="btn btn-p" onclick="addCustom(${day})">${i.save}</button></div>`;
+        $("modal").classList.add("show");
+      }
+      function addMeal(day, rid) {
+        const r = RECIPES.find((x) => x.id === rid);
+        S.plan[day].push({ rid, name: S.lang === "es" ? r.es : r.en });
+        closeAll();
+        render();
+      }
+      function addCustom(day) {
+        const v = $("custommeal").value.trim();
+        if (!v) return;
+        S.plan[day].push({ name: v });
+        closeAll();
+        render();
+      }
+      function schedulePlan() {
+        const i = t();
+        const rids = S.plan
+          .flat()
+          .filter((m) => m.rid)
+          .map((m) => m.rid);
+        if (!rids.length) {
+          toast(i.plan_none);
+          return;
+        }
+        rids.forEach((rid) => RECIPES.find((r) => r.id === rid).ing.forEach(([id, q]) => (S.cart[id] = (S.cart[id] || 0) + q)));
+        render();
+        toast("✓ " + i.plan_done);
+        openCart();
+      }
+      /* ================= RECIPES ================= */ function vRecipes() {
+        const i = t();
+        return (
+          head(i.rec_title, i.rec_sub) +
+          `   <div class="grid recipes">${RECIPES.map((r) => `     <div class="card rec">       <div class="img">${art(r.art, 110)}${r.photo ? `<img src="${r.photo}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>       <h3>${S.lang === "es" ? r.es : r.en}</h3>       <div class="meta"><span>${r.time} ${i.rec_min}</span><span>·</span><span>${r.serv} ${i.rec_serv}</span><span>·</span><span>${i.rec_dif[r.dif - 1]}</span></div>       <div class="acts">         <button class="btn btn-p" onclick="showRecipe('${r.id}')">${i.rec_view}</button>         <button class="btn btn-s" onclick="buyRecipe('${r.id}')">${i.rec_buy}</button>         <button class="btn btn-s" onclick="planRecipe('${r.id}')">${i.rec_plan}</button>       </div>     </div>`).join("")}   </div>`
+        );
+      }
+      function showRecipe(rid) {
+        const i = t();
+        const r = RECIPES.find((x) => x.id === rid);
+        const steps = S.lang === "es" ? r.steps : r.stepsEn;
+        $("mbox").innerHTML =
+          `     <button class="x" onclick="closeAll()">✕</button>     <div style="display:flex;gap:16px;align-items:center;margin-bottom:6px">${art(r.art, 74)}<div>       <h2 style="font-size:20px">${S.lang === "es" ? r.es : r.en}</h2>       <div style="display:flex;gap:14px;color:var(--muted);font-size:13px"><span>${r.time} ${i.rec_min} · ${r.serv} ${i.rec_serv} · ${i.rec_dif[r.dif - 1]}</span></div>     </div></div>     <h3 class="disp" style="font-size:12px;color:var(--gold);margin:14px 0 8px;letter-spacing:.2em">${i.rec_ing}</h3>     ${r.ing
+            .map(([id, q]) => {
+              const p = P(id);
+              return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13.5px"><span>${pname(p)}</span><span style="color:var(--muted)">${q} ${p.unit === "pack" ? "pack" : "lb"} · ${money(pprice(p) * q)}</span></div>`;
+            })
+            .join(
+              "",
+            )}     <h3 class="disp" style="font-size:12px;color:var(--gold);margin:16px 0 8px;letter-spacing:.2em">${i.rec_steps}</h3>     ${steps.map((s, ix) => `<div style="display:flex;gap:12px;padding:6px 0;font-size:13.5px;color:var(--muted)"><b style="color:var(--gold)">${ix + 1}</b><span>${s}</span></div>`).join("")}     <button class="btn btn-r" style="width:100%;margin-top:18px" onclick="buyRecipe('${r.id}');closeAll()">${i.rec_buy}</button>`;
+        $("modal").classList.add("show");
+      }
+      function buyRecipe(rid) {
+        const r = RECIPES.find((x) => x.id === rid);
+        r.ing.forEach(([id, q]) => (S.cart[id] = (S.cart[id] || 0) + q));
+        render();
+        toast(`<b>${S.lang === "es" ? r.es : r.en}</b> ${t().added}`);
+      }
+      function planRecipe(rid) {
+        const i = t();
+        const r = RECIPES.find((x) => x.id === rid);
+        $("mbox").innerHTML =
+          `     <button class="x" onclick="closeAll()">✕</button>     <h2 style="margin-bottom:14px;font-size:19px">${i.choose_day}</h2>     <div class="grid" style="grid-template-columns:1fr 1fr;gap:8px">${i.days.map((d, ix) => `<button class="btn btn-g" onclick="addMeal(${ix},'${r.id}');go('planner')">${d}</button>`).join("")}</div>`;
+        $("modal").classList.add("show");
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAll();
+      });
+      render();
+    </script>
+  </body>
+</html>
