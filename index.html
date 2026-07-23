@@ -1923,11 +1923,19 @@
         margin-bottom: 18px;
       }
       .hero h1 {
+        color: #dfdcd6;
+        font-size: 34px;
+        line-height: 1.22;
+        font-weight: 600;
+        max-width: 680px;
+      }
+      .hero h1 .l2b {
+        display: block;
+        margin-top: 8px;
         color: #fff;
-        font-size: 50px;
-        line-height: 1.06;
         font-weight: 700;
-        max-width: 660px;
+        font-size: 40px;
+        line-height: 1.12;
       }
       .hero h1 .l2 { display: inline; color: #fff; background: none; -webkit-background-clip: initial; background-clip: initial; }
       .hero .subcaps {
@@ -2596,8 +2604,8 @@
           cart: "Carrito",
           foot: "Carnes · Mariscos · Fuego — Producto altamente adictivo",
           hero_eyebrow: "Grill market premium · San Salvador",
-          hero_t1: "Comprar el fuego",
-          hero_t2: "debe sentirse como el fuego.",
+          hero_t1: "La parrilla siempre fue la mejor parte del domingo.",
+          hero_t2: "Karbón hace que comprarla sea la mejor parte del viernes.",
           hero_sub: "Carnes, mariscos, leñas de humo y todo lo que exige el ritual del asado — con estética de boutique, no de supermercado.",
           hero_subcaps: "Carnes · Mariscos · Leñas de humo · Todo para el asado",
           hero_props: [
@@ -2757,8 +2765,8 @@
           cart: "Cart",
           foot: "Meats · Seafood · Fire — Highly addictive product",
           hero_eyebrow: "Premium grill market · San Salvador",
-          hero_t1: "Buying the fire",
-          hero_t2: "should feel like the fire.",
+          hero_t1: "The grill was always the best part of Sunday.",
+          hero_t2: "Karbón makes buying it the best part of Friday.",
           hero_sub: "Meats, seafood, smoking woods and everything the asado ritual demands — with the aesthetic of a boutique, not a supermarket.",
           hero_subcaps: "Meats · Seafood · Smoking woods · Everything for the asado",
           hero_props: [
@@ -3067,7 +3075,7 @@
       };
       function vHome() {
         const i = t();
-        return `   <div class="herowrap">     <section class="hero">       <img class="hbg" src="${HERO_PHOTO}" alt="" onerror="this.remove()">       <div class="hshade"></div>       <div class="hin">         <span class="pill">${i.hero_eyebrow}</span>         <h1>${i.hero_t1} ${i.hero_t2}</h1>         <div class="subcaps">${i.hero_subcaps}</div>         <div class="props">${i.hero_props.map((pp) => `<div class="pr">${ICO[pp[0]] || ""}<span>${pp[1]}</span></div>`).join("")}</div>         <div class="ship">${i.hero_ship}</div>         <div class="cta">           <button class="btn btn-r" onclick="go('catalog')">${i.hero_cta1}</button>           <button class="btn btn-g" onclick="go('catalog')">${i.hero_cta2}</button>         </div>       </div>     </section>     <section class="featured">       <div class="section-head"><div><h2>${i.feat_title}</h2></div></div>       <div class="grid products">${["ribeye", "puyazo", "camaron", "carbonencino"].map((id) => prodCard(P(id))).join("")}</div>       <div class="feat-cta"><button class="btn btn-r" onclick="go('catalog')">${i.feat_cta}</button></div>     </section>     <div class="promos">       <div class="promo p1" onclick="setCat('res')">         <div class="pimg"><img src="${P("ribeye").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo1_t}</h3><p>${i.promo1_s}</p></div>       </div>       <div class="promo p2" onclick="setCat('lena')">         <div class="pimg"><img src="${P("carbonencino").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo2_t}</h3><p>${i.promo2_s}</p></div>       </div>     </div>   </div>   ${storeBox()}   ${newsBox()}`;
+        return `   <div class="herowrap">     <section class="hero">       <img class="hbg" src="${HERO_PHOTO}" alt="" onerror="this.remove()">       <div class="hshade"></div>       <div class="hin">         <span class="pill">${i.hero_eyebrow}</span>         <h1>${i.hero_t1}<span class="l2b">${i.hero_t2}</span></h1>         <div class="subcaps">${i.hero_subcaps}</div>         <div class="props">${i.hero_props.map((pp) => `<div class="pr">${ICO[pp[0]] || ""}<span>${pp[1]}</span></div>`).join("")}</div>         <div class="ship">${i.hero_ship}</div>         <div class="cta">           <button class="btn btn-r" onclick="go('catalog')">${i.hero_cta1}</button>           <button class="btn btn-g" onclick="go('catalog')">${i.hero_cta2}</button>         </div>       </div>     </section>     <section class="featured">       <div class="section-head"><div><h2>${i.feat_title}</h2></div></div>       <div class="grid products">${["ribeye", "puyazo", "camaron", "carbonencino"].map((id) => prodCard(P(id))).join("")}</div>       <div class="feat-cta"><button class="btn btn-r" onclick="go('catalog')">${i.feat_cta}</button></div>     </section>     <div class="promos">       <div class="promo p1" onclick="setCat('res')">         <div class="pimg"><img src="${P("ribeye").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo1_t}</h3><p>${i.promo1_s}</p></div>       </div>       <div class="promo p2" onclick="setCat('lena')">         <div class="pimg"><img src="${P("carbonencino").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo2_t}</h3><p>${i.promo2_s}</p></div>       </div>     </div>   </div>   ${storeBox()}   ${newsBox()}`;
       }
       function storeBox() {
         const i = t();
