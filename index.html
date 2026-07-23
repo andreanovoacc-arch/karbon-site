@@ -2304,6 +2304,43 @@
         .ribbon .track { animation: none; }
         .prod .img > img, .who .w-photo img { transition: none; }
       }
+      .adm-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+      .adm-stats .stat {
+        border: 1px solid var(--line);
+        padding: 18px 16px;
+        text-align: center;
+      }
+      .adm-stats .stat b {
+        display: block;
+        font-family: var(--disp2);
+        font-size: 26px;
+        letter-spacing: 0.02em;
+      }
+      .adm-stats .stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+      table.adm {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      table.adm th {
+        text-align: left;
+        font-family: var(--disp2);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11.5px;
+        color: var(--muted);
+        border-bottom: 2px solid #101010;
+        padding: 8px 10px;
+      }
+      table.adm td { border-bottom: 1px solid var(--line); padding: 10px; }
+      table.adm .tr { text-align: right; }
+      @media (max-width: 700px) {
+        .adm-stats { grid-template-columns: 1fr 1fr; }
+      }
       /* narrative sections */
       .who {
         display: grid;
@@ -2425,6 +2462,7 @@
         <div class="hacts">
           <button class="hbtn" onclick="go('loyalty')"><span class="i"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><span id="h-loy"></span></button>
           <button class="hbtn" onclick="go('orders')"><span class="i"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span id="h-ord"></span></button>
+          <button class="hbtn" onclick="accountBtn()"><span class="i"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span id="h-acc"></span></button>
           <button class="cartbtn" onclick="openCart()">
             <span style="display:inline-flex"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l1 13H4L5 8z"/><path d="M8 8a4 4 0 0 1 8 0"/></svg></span> <span id="cartlbl"></span> <span class="tot" id="carttot"></span><span class="badge" id="cartbadge" style="display: none">0</span>
           </button>
@@ -2863,6 +2901,44 @@
             ["Sin tarjetas físicas", "Muestra el código en caja o úsala al pedir en línea. Sin plástico, sin olvidos."],
           ],
           klub_cta: "Ver mi tarjeta Klub",
+          acc_title: "Mi cuenta Karbón",
+          acc_login_t: "Entrar con mi teléfono",
+          acc_login_short: "Entrar",
+          acc_login_sub: "Tu número es tu cuenta: pedidos, puntos y sellos Klub viven ahí.",
+          acc_phone: "Número de teléfono",
+          acc_send: "Enviarme el código",
+          acc_badphone: "Escribe un número válido de 8 dígitos.",
+          acc_code_t: "Escribe el código",
+          acc_code_sub: "Enviamos un código por SMS al",
+          acc_code: "Código de verificación",
+          acc_demo: "DEMO — en el sitio final el código llega por SMS. Tu código:",
+          acc_verify: "Verificar y entrar",
+          acc_wrong: "Ese código no coincide. Revisa e intenta de nuevo.",
+          acc_hello: "Bienvenido,",
+          acc_bye: "Sesión cerrada. Tus puntos te esperan.",
+          acc_client: "Cliente Karbón",
+          acc_stamps: "Sellos",
+          acc_logout: "Cerrar sesión",
+          acc_need: "Entra con tu teléfono para ver tus pedidos.",
+          acc_need_klub: "Tu tarjeta Klub vive en tu número. Entra para verla.",
+          acc_linked: "Cuenta:",
+          co_needphone: "Necesitamos tu teléfono: ahí viven tu cuenta y tus puntos Klub.",
+          co_phone_hint: "Tu pedido y tus puntos Klub quedan guardados con este número.",
+          adm_title: "Panel de tienda",
+          adm_sub: "Solo administradores · Movimiento de producto y ventas por recibo",
+          adm_badge: "ADMIN",
+          adm_open: "Abrir panel de tienda",
+          adm_denied: "Esta área es solo para la cuenta oficial de la tienda.",
+          adm_note: "DEMO — este panel lee los pedidos guardados en este dispositivo. El sistema central (todas las cajas y clientes en tiempo real) requiere el backend de la fase 2.",
+          adm_sales: "Ventas",
+          adm_orders: "Pedidos",
+          adm_customers: "Clientes (teléfonos)",
+          adm_units: "Unidades movidas",
+          adm_products: "Movimiento de producto",
+          adm_col_prod: "Producto",
+          adm_col_units: "Unidades",
+          adm_col_rev: "Ingresos",
+          adm_receipts: "Recibos por teléfono",
           ribbon: "Res <b>·</b> Mariscos <b>·</b> Pollo <b>·</b> Leña & Carbón <b>·</b> Packs Parrilleros <b>·</b> Klub Karbón <b>·</b> Producto altamente adictivo <b>·</b> ",
           hero_cta1: "Ver catálogo",
           hero_cta2: "Hacer pre-orden",
@@ -3044,6 +3120,44 @@
             ["No plastic cards", "Show the code at the counter or use it ordering online. No plastic, nothing to forget."],
           ],
           klub_cta: "See my Klub card",
+          acc_title: "My Karbón account",
+          acc_login_t: "Sign in with my phone",
+          acc_login_short: "Sign in",
+          acc_login_sub: "Your number is your account: orders, points and Klub stamps live there.",
+          acc_phone: "Phone number",
+          acc_send: "Send me the code",
+          acc_badphone: "Enter a valid 8-digit number.",
+          acc_code_t: "Enter the code",
+          acc_code_sub: "We sent an SMS code to",
+          acc_code: "Verification code",
+          acc_demo: "DEMO — on the final site the code arrives by SMS. Your code:",
+          acc_verify: "Verify and sign in",
+          acc_wrong: "That code doesn't match. Check and try again.",
+          acc_hello: "Welcome,",
+          acc_bye: "Signed out. Your points will be waiting.",
+          acc_client: "Karbón customer",
+          acc_stamps: "Stamps",
+          acc_logout: "Sign out",
+          acc_need: "Sign in with your phone to see your orders.",
+          acc_need_klub: "Your Klub card lives in your number. Sign in to see it.",
+          acc_linked: "Account:",
+          co_needphone: "We need your phone: your account and Klub points live there.",
+          co_phone_hint: "Your order and Klub points are saved to this number.",
+          adm_title: "Store panel",
+          adm_sub: "Admins only · Product movement and sales by receipt",
+          adm_badge: "ADMIN",
+          adm_open: "Open store panel",
+          adm_denied: "This area is only for the store's official account.",
+          adm_note: "DEMO — this panel reads orders saved on this device. The central system (all registers and customers in real time) requires the phase-2 backend.",
+          adm_sales: "Sales",
+          adm_orders: "Orders",
+          adm_customers: "Customers (phones)",
+          adm_units: "Units moved",
+          adm_products: "Product movement",
+          adm_col_prod: "Product",
+          adm_col_units: "Units",
+          adm_col_rev: "Revenue",
+          adm_receipts: "Receipts by phone",
           ribbon: "Beef <b>·</b> Seafood <b>·</b> Poultry <b>·</b> Wood & Charcoal <b>·</b> Grill Packs <b>·</b> Klub Karbón <b>·</b> Highly addictive product <b>·</b> ",
           hero_cta1: "Browse catalog",
           hero_cta2: "Place a pre-order",
@@ -3195,21 +3309,47 @@
         name: "",
         phone: "",
       };
-      S.orders = [
-        {
-          no: "KB-1041",
-          demo: true,
-          when: "2026-07-20 · 4:30 PM",
-          type: "pickup",
-          status: "prep",
+      /* ===== CUENTAS POR TELÉFONO (demo local en este dispositivo) ===== */
+      const DB_KEY = "karbon_db_v1";
+      const ADMIN_PHONE = "77770000";
+      function normPhone(v) {
+        return String(v || "").replace(/\D/g, "").replace(/^503/, "");
+      }
+      function fmtPhone(p) {
+        return p && p.length === 8 ? p.slice(0, 4) + "-" + p.slice(4) : p || "";
+      }
+      function loadDB() {
+        try {
+          const d = JSON.parse(localStorage.getItem(DB_KEY) || "null");
+          if (d && d.accounts) return d;
+        } catch (e) {}
+        return null;
+      }
+      let DB = loadDB();
+      if (!DB) {
+        DB = { accounts: {}, session: null, orderNo: 1041 };
+        DB.accounts["60000001"] = {
+          phone: "60000001",
           name: "Andrea",
-          items: [
-            ["puyazo", 2],
-            ["chorizo", 1],
+          points: 87,
+          stamps: 3,
+          orders: [
+            { no: "KB-1041", demo: true, when: "2026-07-20 · 4:30 PM", type: "pickup", status: "prep", name: "Andrea", phone: "60000001", items: [["puyazo", 2], ["chorizo", 1]] },
+            { no: "KB-1039", demo: true, when: "2026-07-12 · 11:00 AM", type: "pre", status: "done", name: "Andrea", phone: "60000001", items: [["packfam", 1]] },
           ],
-        },
-        { no: "KB-1039", demo: true, when: "2026-07-12 · 11:00 AM", type: "pre", status: "done", name: "Andrea", items: [["packfam", 1]] },
-      ];
+        };
+      }
+      function saveDB() {
+        try {
+          localStorage.setItem(DB_KEY, JSON.stringify(DB));
+        } catch (e) {}
+      }
+      function acct() {
+        return DB.session ? DB.accounts[DB.session] : null;
+      }
+      function isAdmin() {
+        return DB.session === ADMIN_PHONE;
+      }
       const $ = (id) => document.getElementById(id);
       const t = () => T[S.lang];
       const P = (id) => PRODUCTS.find((p) => p.id === id);
@@ -3286,6 +3426,7 @@
         $("q").placeholder = i.search_ph;
         $("h-loy").textContent = i.h_loy;
         $("h-ord").textContent = i.h_ord;
+        $("h-acc").textContent = acct() ? fmtPhone(acct().phone) : i.acc_login_short;
         $("cartlbl").textContent = i.cart;
         $("foot-tag").textContent = i.foot;
         $("topbar").innerHTML =
@@ -3303,9 +3444,95 @@
         $("carttot").textContent = n ? money(orderTotals(Object.entries(S.cart)).tot) : "";
         $("fcols").innerHTML =
           `     <div><div class="wordmark"><span class="km" style="font-size:22px">KARBÓN</span></div><p style="color:var(--dim);font-size:13px;margin-top:10px;max-width:280px">${i.f_blurb}</p></div>     <div><h5>${i.f_shop}</h5>${["res", "cerdo", "pollo", "mariscos", "emb", "lena", "pack", "merch"].map((c) => `<button onclick="setCat('${c}')">${i.cats[c]}</button>`).join("")}</div>     <div><h5>${i.f_svcs}</h5><button onclick="go('loyalty')">${i.top.club}</button><button onclick="go('planner')">${i.top.planner}</button><button onclick="go('orders')">${i.top.orders}</button><button onclick="go('recipes')">${i.top.recipes}</button></div>     <div><h5>${i.f_contact}</h5><button>San Salvador, El Salvador</button><button>+503 7777-0000</button><button>hola@karbon.sv</button></div>`;
-        $("view").innerHTML = { home: vHome, catalog: vCatalog, orders: vOrders, loyalty: vLoyalty, planner: vPlanner, recipes: vRecipes }[S.view]();
+        $("view").innerHTML = { home: vHome, catalog: vCatalog, orders: vOrders, loyalty: vLoyalty, planner: vPlanner, recipes: vRecipes, admin: vAdmin }[S.view]();
         if (S.view === "loyalty") drawBars();
         revealInit();
+      }
+      /* ===== LOGIN POR CÓDIGO (demo: el SMS real requiere backend) ===== */
+      let pendingPhone = null, pendingCode = null;
+      function accountBtn() {
+        acct() ? accountModal() : loginModal();
+      }
+      function loginModal() {
+        const i = t();
+        $("mbox").innerHTML =
+          `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 6px">${i.acc_login_t}</h2><p style="color:var(--muted);font-size:13.5px;margin-bottom:14px">${i.acc_login_sub}</p><label class="f">${i.acc_phone}</label><input type="tel" id="lg-phone" placeholder="7777-0000"><button class="btn btn-r" style="width:100%;margin-top:14px" onclick="sendCode()">${i.acc_send} →</button>`;
+        $("modal").classList.add("show");
+      }
+      function sendCode() {
+        const i = t();
+        const p = normPhone($("lg-phone").value);
+        if (p.length < 8) { toast(i.acc_badphone); return; }
+        pendingPhone = p;
+        pendingCode = String(Math.floor(1000 + Math.random() * 9000));
+        $("mbox").innerHTML =
+          `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 6px">${i.acc_code_t}</h2><p style="color:var(--muted);font-size:13.5px">${i.acc_code_sub} <b>${fmtPhone(p)}</b></p><div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 14px;margin:12px 0;font-size:12.5px;color:var(--muted)">${i.acc_demo} <b style="letter-spacing:.25em;font-size:15px">${pendingCode}</b></div><label class="f">${i.acc_code}</label><input type="text" id="lg-code" inputmode="numeric" maxlength="4" placeholder="••••"><button class="btn btn-r" style="width:100%;margin-top:14px" onclick="verifyCode()">${i.acc_verify} ✓</button>`;
+      }
+      function verifyCode() {
+        const i = t();
+        if (($("lg-code").value || "").trim() !== pendingCode) { toast(i.acc_wrong); return; }
+        if (!DB.accounts[pendingPhone]) DB.accounts[pendingPhone] = { phone: pendingPhone, name: "", points: 0, stamps: 0, orders: [] };
+        DB.session = pendingPhone;
+        saveDB();
+        closeAll();
+        toast(`✓ ${i.acc_hello} <b>${fmtPhone(pendingPhone)}</b>`);
+        go(isAdmin() ? "admin" : "orders");
+      }
+      function logout() {
+        DB.session = null;
+        saveDB();
+        closeAll();
+        toast(t().acc_bye);
+        go("home");
+      }
+      function accountModal() {
+        const i = t();
+        const a = acct();
+        $("mbox").innerHTML =
+          `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 2px">${a.name ? esc(a.name) : i.acc_client}</h2><p style="color:var(--muted);font-size:14px;margin-bottom:16px">${fmtPhone(a.phone)}${isAdmin() ? ` · <b style="color:var(--red)">${i.adm_badge}</b>` : ""}</p>${isAdmin() ? `<button class="btn btn-r" style="width:100%;margin-bottom:8px" onclick="closeAll();go('admin')">${i.adm_open} →</button>` : `<div style="display:flex;gap:10px;margin-bottom:8px"><div style="flex:1;border:1px solid var(--line);padding:12px;text-align:center"><b style="font-size:20px">${a.points}</b><br><span style="font-size:11.5px;color:var(--muted)">${i.loy_pts}</span></div><div style="flex:1;border:1px solid var(--line);padding:12px;text-align:center"><b style="font-size:20px">${a.stamps}/8</b><br><span style="font-size:11.5px;color:var(--muted)">${i.acc_stamps}</span></div></div><button class="btn btn-s" style="width:100%;margin-bottom:8px" onclick="closeAll();go('orders')">${i.top.orders}</button><button class="btn btn-s" style="width:100%;margin-bottom:8px" onclick="closeAll();go('loyalty')">${i.top.club}</button>`}<button class="btn btn-g" style="width:100%" onclick="logout()">${i.acc_logout}</button>`;
+        $("modal").classList.add("show");
+      }
+      /* ===== PANEL DE TIENDA (solo admin) ===== */
+      function vAdmin() {
+        const i = t();
+        if (!isAdmin()) return head(i.adm_title, "") + `<div class="empty"><b>${i.adm_denied}</b></div>`;
+        refreshAdmAll();
+        const all = ADMALL;
+        const units = {}, rev = {};
+        let totalRev = 0, totalUnits = 0;
+        all.forEach((o) => {
+          const tt = orderTotals(o.items);
+          totalRev += tt.tot;
+          o.items.forEach(([id, q]) => {
+            units[id] = (units[id] || 0) + q;
+            totalUnits += q;
+            rev[id] = (rev[id] || 0) + pprice(P(id)) * q;
+          });
+        });
+        const custs = Object.values(DB.accounts).filter((a) => a.phone !== ADMIN_PHONE && a.orders.length).length;
+        const rows = Object.keys(units)
+          .map((id) => ({ name: pname(P(id)), u: units[id], r: rev[id] }))
+          .sort((x, y) => y.r - x.r);
+        return (
+          head(i.adm_title, i.adm_sub) +
+          `<div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 16px;margin-bottom:18px;font-size:12.5px;color:var(--muted)">${i.adm_note}</div>
+       <div class="adm-stats">
+         <div class="stat"><b>${money(totalRev)}</b><span>${i.adm_sales}</span></div>
+         <div class="stat"><b>${all.length}</b><span>${i.adm_orders}</span></div>
+         <div class="stat"><b>${custs}</b><span>${i.adm_customers}</span></div>
+         <div class="stat"><b>${totalUnits}</b><span>${i.adm_units}</span></div>
+       </div>
+       <div class="section-head" style="margin-top:26px"><div><h2 style="font-size:22px">${i.adm_products}</h2></div></div>
+       <table class="adm"><tr><th>${i.adm_col_prod}</th><th class="tr">${i.adm_col_units}</th><th class="tr">${i.adm_col_rev}</th></tr>${rows.map((r) => `<tr><td>${r.name}</td><td class="tr">${r.u}</td><td class="tr">${money(r.r)}</td></tr>`).join("")}</table>
+       <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:22px">${i.adm_receipts}</h2></div></div>
+       <table class="adm"><tr><th>${i.inv_no}</th><th>${i.acc_phone}</th><th>${i.inv_date}</th><th class="tr">${i.total}</th><th></th></tr>${all.map((o, ix) => `<tr><td><b>${o.no}</b>${o.demo ? ` <span class="chip">${i.demo}</span>` : ""}</td><td>${fmtPhone(o.phone)}</td><td style="color:var(--muted)">${o.when}</td><td class="tr"><b>${money(orderTotals(o.items).tot)}</b></td><td class="tr"><button class="btn btn-s" style="padding:6px 12px;font-size:11px" onclick="showInvoice(ADMALL[${ix}])">${i.viewinv}</button></td></tr>`).join("")}</table>`
+        );
+      }
+      let ADMALL = [];
+      function refreshAdmAll() {
+        ADMALL = [];
+        Object.values(DB.accounts).forEach((a) => a.orders.forEach((o) => ADMALL.push({ ...o, phone: a.phone })));
+        ADMALL.sort((x, y) => (x.no < y.no ? 1 : -1));
       }
       function revealInit() {
         if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -3447,7 +3674,7 @@
             minPre = d2.toISOString().slice(0, 10);
           const tt = orderTotals(items);
           $("dbody").innerHTML =
-            `       <label class="f">${i.co_name}</label><input type="text" id="co-name" value="${esc(S.name)}" placeholder="Andrea Novoa">       <div style="height:12px"></div>       <label class="f">${i.co_phone}</label><input type="tel" id="co-phone" value="${esc(S.phone)}" placeholder="7777-0000">       <div style="height:12px"></div>       <label class="f">${i.co_type}</label>       <select id="co-type" onchange="$('co-date').min=this.value==='pre'?'${minPre}':'${minPick}'">         <option value="pickup">${i.type_pickup}</option>         <option value="pre">${i.type_pre}</option>       </select>       <div style="height:12px"></div>       <div class="row2">         <div><label class="f">${i.co_date}</label><input type="date" id="co-date" min="${minPick}" value="${minPick}"></div>         <div><label class="f">${i.co_time}</label><select id="co-time">${["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"].map((h) => `<option>${h}</option>`).join("")}</select></div>       </div>       <div style="height:12px"></div>       <label class="f">${i.co_pay}</label>       <select id="co-pay"><option>${i.pay1}</option><option>${i.pay2}</option></select>`;
+            `       <label class="f">${i.co_name}</label><input type="text" id="co-name" value="${esc(S.name)}" placeholder="Andrea Novoa">       <div style="height:12px"></div>       <label class="f">${i.co_phone}</label><input type="tel" id="co-phone" value="${esc(acct() ? acct().phone : S.phone)}" placeholder="7777-0000"><div style="font-size:11.5px;color:var(--dim);margin-top:5px">${i.co_phone_hint}</div>       <div style="height:12px"></div>       <label class="f">${i.co_type}</label>       <select id="co-type" onchange="$('co-date').min=this.value==='pre'?'${minPre}':'${minPick}'">         <option value="pickup">${i.type_pickup}</option>         <option value="pre">${i.type_pre}</option>       </select>       <div style="height:12px"></div>       <div class="row2">         <div><label class="f">${i.co_date}</label><input type="date" id="co-date" min="${minPick}" value="${minPick}"></div>         <div><label class="f">${i.co_time}</label><select id="co-time">${["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"].map((h) => `<option>${h}</option>`).join("")}</select></div>       </div>       <div style="height:12px"></div>       <label class="f">${i.co_pay}</label>       <select id="co-pay"><option>${i.pay1}</option><option>${i.pay2}</option></select>`;
           $("dfoot").innerHTML =
             `       <div class="trow tt"><span>${i.total}</span><span>${money(tt.tot)}</span></div>       <button class="btn btn-r" style="width:100%;margin-top:12px" onclick="confirmOrder()">${i.co_confirm} ✓</button>       <button class="btn btn-s" style="width:100%;margin-top:8px" onclick="drawerMode='cart';renderDrawer()">← ${i.cart}</button>`;
         }
@@ -3459,24 +3686,34 @@
           toast(i.co_need);
           return;
         }
+        const phone = normPhone($("co-phone").value);
+        if (phone.length < 8) {
+          toast(i.co_needphone);
+          return;
+        }
         S.name = name;
-        S.phone = $("co-phone").value.trim();
+        S.phone = phone;
         const items = Object.entries(S.cart).map(([id, q]) => [id, q]);
         const type = $("co-type").value;
         const dt = $("co-date").value,
           tm = $("co-time").value;
         const tt = orderTotals(items);
-        S.orderNo++;
-        const o = { no: "KB-" + S.orderNo, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, items };
-        S.orders.unshift(o);
+        DB.orderNo++;
+        const o = { no: "KB-" + DB.orderNo, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, phone, items };
+        if (!DB.accounts[phone]) DB.accounts[phone] = { phone, name, points: 0, stamps: 0, orders: [] };
+        const a = DB.accounts[phone];
+        if (!a.name) a.name = name;
+        a.orders.unshift(o);
         const pts = Math.round(tt.tot);
-        S.points += pts;
-        S.stamps = Math.min(8, S.stamps + 1);
+        a.points += pts;
+        a.stamps = Math.min(8, a.stamps + 1);
+        if (!DB.session) DB.session = phone;
+        saveDB();
         S.cart = {};
         closeAll();
         render();
         showInvoice(o);
-        setTimeout(() => toast(`+${pts} ${i.pts_earned}`), 700);
+        setTimeout(() => toast(`+${pts} ${i.pts_earned} → <b>${fmtPhone(phone)}</b>`), 700);
       }
       /* ================= INVOICE ================= */ function showInvoice(o) {
         const i = t();
@@ -3495,29 +3732,35 @@
       }
       /* ================= ORDERS ================= */ function vOrders() {
         const i = t();
-        if (!S.orders.length) return head(i.ord_title, i.ord_sub) + `<div class="empty"><b>${i.ord_empty}</b></div>`;
+        const a = acct();
+        if (!a) return head(i.ord_title, i.ord_sub) + `<div class="empty"><b>${i.acc_need}</b><br><br><button class="btn btn-r" onclick="loginModal()">${i.acc_login_t}</button></div>`;
+        if (isAdmin()) return vAdmin();
+        const list = a.orders;
+        if (!list.length) return head(i.ord_title, `${i.acc_linked} ${fmtPhone(a.phone)}`) + `<div class="empty"><b>${i.ord_empty}</b></div>`;
         return (
-          head(i.ord_title, i.ord_sub) +
-          `<div class="grid">${S.orders
+          head(i.ord_title, `${i.acc_linked} ${fmtPhone(a.phone)}`) +
+          `<div class="grid">${list
             .map((o, ix) => {
               const tt = orderTotals(o.items);
-              return `<div class="card order">       <div class="oi">${art(P(o.items[0][0]).art, 44)}${P(o.items[0][0]).photo ? `<img src="${P(o.items[0][0]).photo}" alt="" onerror="this.remove()">` : ""}</div>       <div class="om"><b>${o.no} ${o.demo ? `<span class="chip" style="margin-left:6px">${i.demo}</span>` : ""}</b>         <span>${o.when} · ${o.items.reduce((a, [, q]) => a + q, 0)} ${i.items} · <b style="color:var(--gold)">${money(tt.tot)}</b></span></div>       <span class="st ${o.status}">${i.st[o.status]}</span>       <div style="display:flex;gap:8px">         <button class="btn btn-s" onclick='showInvoice(S.orders[${ix}])'>${i.viewinv}</button>         <button class="btn btn-s" onclick="reorder(${ix})">${i.reorder}</button>       </div>     </div>`;
+              return `<div class="card order">       <div class="oi">${art(P(o.items[0][0]).art, 44)}${P(o.items[0][0]).photo ? `<img src="${P(o.items[0][0]).photo}" alt="" onerror="this.remove()">` : ""}</div>       <div class="om"><b>${o.no} ${o.demo ? `<span class="chip" style="margin-left:6px">${i.demo}</span>` : ""}</b>         <span>${o.when} · ${o.items.reduce((acc, [, q]) => acc + q, 0)} ${i.items} · <b style="color:var(--gold)">${money(tt.tot)}</b></span></div>       <span class="st ${o.status}">${i.st[o.status]}</span>       <div style="display:flex;gap:8px">         <button class="btn btn-s" onclick='showInvoice(acct().orders[${ix}])'>${i.viewinv}</button>         <button class="btn btn-s" onclick="reorder(${ix})">${i.reorder}</button>       </div>     </div>`;
             })
             .join("")}</div>`
         );
       }
       function reorder(ix) {
-        S.orders[ix].items.forEach(([id, q]) => (S.cart[id] = (S.cart[id] || 0) + q));
+        acct().orders[ix].items.forEach(([id, q]) => (S.cart[id] = (S.cart[id] || 0) + q));
         render();
         openCart();
       }
       /* ================= LOYALTY ================= */ function vLoyalty() {
         const i = t();
+        const a = acct();
+        if (!a) return head(i.loy_title, i.loy_sub) + `<div class="empty"><b>${i.acc_need_klub}</b><br><br><button class="btn btn-r" onclick="loginModal()">${i.acc_login_t}</button></div>`;
         const next = 200,
-          prog = Math.min(100, ((S.points % next) / next) * 100);
+          prog = Math.min(100, ((a.points % next) / next) * 100);
         return (
           head(i.loy_title, i.loy_sub) +
-          `   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px">     <div>       <div class="lcard">         <div class="brand2"><span class="wm steel">KARBÓN</span><span class="tier">${i.loy_tier}</span></div>         <div class="pts steel">${S.points} <small>${i.loy_pts}</small></div>         <div class="pbar"><i style="width:${prog}%"></i></div>         <div style="font-size:12px;color:var(--muted);margin-top:6px">${S.points % next}/${next} ${i.loy_next}</div>         <div class="id">${i.loy_member} · ${(esc(S.name) || "ANDREA N.").toUpperCase()} · KBN-2026-0847</div>         <div class="bars" id="bars"></div>       </div>     </div>     <div>       <div class="card">         <h3 class="disp" style="font-size:14px;margin-bottom:4px">${i.loy_stamps}</h3>         <p style="color:var(--muted);font-size:12.5px;margin-bottom:14px">${i.loy_stamp_note}</p>         <div class="stamps">${Array.from({ length: 8 }, (_, k) => `<div class="stampc ${k < S.stamps ? "f" : ""}">${k < S.stamps ? "♦" : k + 1}</div>`).join("")}</div>       </div>       <div class="card" style="margin-top:16px">         <h3 class="disp" style="font-size:14px;margin-bottom:10px">${i.loy_how_t}</h3>         ${i.loy_how.map((h) => `<div style="display:flex;gap:10px;padding:5px 0;color:var(--muted);font-size:13.5px"><span style="color:var(--gold)">◆</span>${h}</div>`).join("")}       </div>     </div>   </div>`
+          `   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px">     <div>       <div class="lcard">         <div class="brand2"><span class="wm steel">KARBÓN</span><span class="tier">${i.loy_tier}</span></div>         <div class="pts steel">${a.points} <small>${i.loy_pts}</small></div>         <div class="pbar"><i style="width:${prog}%"></i></div>         <div style="font-size:12px;color:var(--muted);margin-top:6px">${a.points % next}/${next} ${i.loy_next}</div>         <div class="id">${i.loy_member} · ${(esc(a.name) || fmtPhone(a.phone)).toUpperCase()} · ${fmtPhone(a.phone)}</div>         <div class="bars" id="bars"></div>       </div>     </div>     <div>       <div class="card">         <h3 class="disp" style="font-size:14px;margin-bottom:4px">${i.loy_stamps}</h3>         <p style="color:var(--muted);font-size:12.5px;margin-bottom:14px">${i.loy_stamp_note}</p>         <div class="stamps">${Array.from({ length: 8 }, (_, k) => `<div class="stampc ${k < a.stamps ? "f" : ""}">${k < a.stamps ? "♦" : k + 1}</div>`).join("")}</div>       </div>       <div class="card" style="margin-top:16px">         <h3 class="disp" style="font-size:14px;margin-bottom:10px">${i.loy_how_t}</h3>         ${i.loy_how.map((h) => `<div style="display:flex;gap:10px;padding:5px 0;color:var(--muted);font-size:13.5px"><span style="color:var(--gold)">◆</span>${h}</div>`).join("")}       </div>     </div>   </div>`
         );
       }
       function drawBars() {
