@@ -2499,6 +2499,7 @@
       </svg>
     </button>
     <div id="toast"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
       /* ================= SVG PRODUCT ART ================= */ const DEFS = `<defs>  <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8463b"/><stop offset=".55" stop-color="#8a3229"/><stop offset="1" stop-color="#5f1f19"/></linearGradient>  <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c05a4a"/><stop offset="1" stop-color="#7c2a21"/></linearGradient>  <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e8d4"/><stop offset="1" stop-color="#d8c5a4"/></linearGradient>  <linearGradient id="wd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a2e"/><stop offset="1" stop-color="#422b19"/></linearGradient> </defs>`;
       function svgWrap(inner, w) {
@@ -2939,6 +2940,8 @@
           adm_col_units: "Unidades",
           adm_col_rev: "Ingresos",
           adm_receipts: "Recibos por teléfono",
+          adm_loading: "Cargando datos de la tienda…",
+          acc_verify_first: "Primero verifica tu número con el código SMS — tus puntos van a esa cuenta.",
           ribbon: "Res <b>·</b> Mariscos <b>·</b> Pollo <b>·</b> Leña & Carbón <b>·</b> Packs Parrilleros <b>·</b> Klub Karbón <b>·</b> Producto altamente adictivo <b>·</b> ",
           hero_cta1: "Ver catálogo",
           hero_cta2: "Hacer pre-orden",
@@ -3158,6 +3161,8 @@
           adm_col_units: "Units",
           adm_col_rev: "Revenue",
           adm_receipts: "Receipts by phone",
+          adm_loading: "Loading store data…",
+          acc_verify_first: "First verify your number with the SMS code — your points go to that account.",
           ribbon: "Beef <b>·</b> Seafood <b>·</b> Poultry <b>·</b> Wood & Charcoal <b>·</b> Grill Packs <b>·</b> Klub Karbón <b>·</b> Highly addictive product <b>·</b> ",
           hero_cta1: "Browse catalog",
           hero_cta2: "Place a pre-order",
@@ -3309,7 +3314,21 @@
         name: "",
         phone: "",
       };
-      /* ===== CUENTAS POR TELÉFONO (demo local en este dispositivo) ===== */
+      /* ===== BACKEND (Supabase) — pegar llaves aquí para activar el modo real ===== */
+      const CONFIG = {
+        SUPABASE_URL: "", // ← Project URL de Supabase (ver docs/SETUP-BACKEND.md)
+        SUPABASE_ANON_KEY: "", // ← anon public key
+        COUNTRY_CODE: "+503",
+      };
+      let sb = null;
+      try {
+        if (CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY && window.supabase) {
+          sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+        }
+      } catch (e) {}
+      const REMOTE = () => !!sb;
+      const intlPhone = (p) => CONFIG.COUNTRY_CODE + p;
+      /* ===== CUENTAS POR TELÉFONO (modo demo local si no hay backend) ===== */
       const DB_KEY = "karbon_db_v1";
       const ADMIN_PHONE = "77770000";
       function normPhone(v) {
@@ -3459,26 +3478,60 @@
           `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 6px">${i.acc_login_t}</h2><p style="color:var(--muted);font-size:13.5px;margin-bottom:14px">${i.acc_login_sub}</p><label class="f">${i.acc_phone}</label><input type="tel" id="lg-phone" placeholder="7777-0000"><button class="btn btn-r" style="width:100%;margin-top:14px" onclick="sendCode()">${i.acc_send} →</button>`;
         $("modal").classList.add("show");
       }
-      function sendCode() {
+      async function sendCode() {
         const i = t();
         const p = normPhone($("lg-phone").value);
         if (p.length < 8) { toast(i.acc_badphone); return; }
         pendingPhone = p;
-        pendingCode = String(Math.floor(1000 + Math.random() * 9000));
+        let demoBox = "";
+        if (REMOTE()) {
+          const { error } = await sb.auth.signInWithOtp({ phone: intlPhone(p) });
+          if (error) { toast("⚠ " + error.message); return; }
+          pendingCode = null;
+        } else {
+          pendingCode = String(Math.floor(1000 + Math.random() * 9000));
+          demoBox = `<div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 14px;margin:12px 0;font-size:12.5px;color:var(--muted)">${i.acc_demo} <b style="letter-spacing:.25em;font-size:15px">${pendingCode}</b></div>`;
+        }
         $("mbox").innerHTML =
-          `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 6px">${i.acc_code_t}</h2><p style="color:var(--muted);font-size:13.5px">${i.acc_code_sub} <b>${fmtPhone(p)}</b></p><div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 14px;margin:12px 0;font-size:12.5px;color:var(--muted)">${i.acc_demo} <b style="letter-spacing:.25em;font-size:15px">${pendingCode}</b></div><label class="f">${i.acc_code}</label><input type="text" id="lg-code" inputmode="numeric" maxlength="4" placeholder="••••"><button class="btn btn-r" style="width:100%;margin-top:14px" onclick="verifyCode()">${i.acc_verify} ✓</button>`;
+          `<button class="x" onclick="closeAll()">✕</button><div class="eyebrow">${i.acc_title}</div><h2 style="font-size:22px;margin:4px 0 6px">${i.acc_code_t}</h2><p style="color:var(--muted);font-size:13.5px">${i.acc_code_sub} <b>${fmtPhone(p)}</b></p>${demoBox}<label class="f">${i.acc_code}</label><input type="text" id="lg-code" inputmode="numeric" maxlength="6" placeholder="••••••"><button class="btn btn-r" style="width:100%;margin-top:14px" onclick="verifyCode()">${i.acc_verify} ✓</button>`;
       }
-      function verifyCode() {
+      async function verifyCode() {
         const i = t();
-        if (($("lg-code").value || "").trim() !== pendingCode) { toast(i.acc_wrong); return; }
-        if (!DB.accounts[pendingPhone]) DB.accounts[pendingPhone] = { phone: pendingPhone, name: "", points: 0, stamps: 0, orders: [] };
+        const token = ($("lg-code").value || "").trim();
+        if (REMOTE()) {
+          const { error } = await sb.auth.verifyOtp({ phone: intlPhone(pendingPhone), token, type: "sms" });
+          if (error) { toast(i.acc_wrong); return; }
+          await syncFromRemote(pendingPhone);
+        } else {
+          if (token !== pendingCode) { toast(i.acc_wrong); return; }
+          if (!DB.accounts[pendingPhone]) DB.accounts[pendingPhone] = { phone: pendingPhone, name: "", points: 0, stamps: 0, orders: [] };
+        }
         DB.session = pendingPhone;
         saveDB();
         closeAll();
         toast(`✓ ${i.acc_hello} <b>${fmtPhone(pendingPhone)}</b>`);
         go(isAdmin() ? "admin" : "orders");
       }
+      async function syncFromRemote(p) {
+        try {
+          let { data: prof } = await sb.from("profiles").select("*").eq("phone", p).maybeSingle();
+          if (!prof) {
+            const r = await sb.from("profiles").insert({ phone: p, name: "" }).select().maybeSingle();
+            prof = (r && r.data) || { phone: p, name: "", points: 0, stamps: 0 };
+          }
+          const { data: ords } = await sb.from("orders").select("*").eq("phone", p).order("created_at", { ascending: false });
+          DB.accounts[p] = {
+            phone: p,
+            name: prof.name || "",
+            points: prof.points || 0,
+            stamps: prof.stamps || 0,
+            orders: (ords || []).map((o) => ({ no: o.no, when: o.when_label, type: o.type, status: o.status, name: o.name, phone: p, items: o.items })),
+          };
+          saveDB();
+        } catch (e) {}
+      }
       function logout() {
+        if (REMOTE()) { try { sb.auth.signOut(); } catch (e) {} }
         DB.session = null;
         saveDB();
         closeAll();
@@ -3496,6 +3549,10 @@
       function vAdmin() {
         const i = t();
         if (!isAdmin()) return head(i.adm_title, "") + `<div class="empty"><b>${i.adm_denied}</b></div>`;
+        if (REMOTE() && !admLoaded) {
+          loadAdminRemote();
+          return head(i.adm_title, i.adm_sub) + `<div class="empty"><b>${i.adm_loading}</b></div>`;
+        }
         refreshAdmAll();
         const all = ADMALL;
         const units = {}, rev = {};
@@ -3515,7 +3572,7 @@
           .sort((x, y) => y.r - x.r);
         return (
           head(i.adm_title, i.adm_sub) +
-          `<div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 16px;margin-bottom:18px;font-size:12.5px;color:var(--muted)">${i.adm_note}</div>
+          `${REMOTE() ? "" : `<div style="background:var(--panel2);border:1px dashed var(--line2);padding:10px 16px;margin-bottom:18px;font-size:12.5px;color:var(--muted)">${i.adm_note}</div>`}
        <div class="adm-stats">
          <div class="stat"><b>${money(totalRev)}</b><span>${i.adm_sales}</span></div>
          <div class="stat"><b>${all.length}</b><span>${i.adm_orders}</span></div>
@@ -3529,6 +3586,24 @@
         );
       }
       let ADMALL = [];
+      let admLoaded = false;
+      async function loadAdminRemote() {
+        try {
+          const { data: ords } = await sb.from("orders").select("*").order("created_at", { ascending: false });
+          const { data: profs } = await sb.from("profiles").select("phone, name, points, stamps");
+          const map = {};
+          (profs || []).forEach((pr) => (map[pr.phone] = { phone: pr.phone, name: pr.name || "", points: pr.points || 0, stamps: pr.stamps || 0, orders: [] }));
+          (ords || []).forEach((o) => {
+            if (!map[o.phone]) map[o.phone] = { phone: o.phone, name: "", points: 0, stamps: 0, orders: [] };
+            map[o.phone].orders.push({ no: o.no, when: o.when_label, type: o.type, status: o.status, name: o.name, phone: o.phone, items: o.items });
+          });
+          const keep = DB.session;
+          DB.accounts = map;
+          if (keep && !DB.accounts[keep]) DB.accounts[keep] = { phone: keep, name: "", points: 0, stamps: 0, orders: [] };
+          admLoaded = true;
+          if (S.view === "admin") render();
+        } catch (e) {}
+      }
       function refreshAdmAll() {
         ADMALL = [];
         Object.values(DB.accounts).forEach((a) => a.orders.forEach((o) => ADMALL.push({ ...o, phone: a.phone })));
@@ -3679,18 +3754,12 @@
             `       <div class="trow tt"><span>${i.total}</span><span>${money(tt.tot)}</span></div>       <button class="btn btn-r" style="width:100%;margin-top:12px" onclick="confirmOrder()">${i.co_confirm} ✓</button>       <button class="btn btn-s" style="width:100%;margin-top:8px" onclick="drawerMode='cart';renderDrawer()">← ${i.cart}</button>`;
         }
       }
-      function confirmOrder() {
+      async function confirmOrder() {
         const i = t();
         const name = $("co-name").value.trim();
-        if (!name) {
-          toast(i.co_need);
-          return;
-        }
+        if (!name) { toast(i.co_need); return; }
         const phone = normPhone($("co-phone").value);
-        if (phone.length < 8) {
-          toast(i.co_needphone);
-          return;
-        }
+        if (phone.length < 8) { toast(i.co_needphone); return; }
         S.name = name;
         S.phone = phone;
         const items = Object.entries(S.cart).map(([id, q]) => [id, q]);
@@ -3698,17 +3767,31 @@
         const dt = $("co-date").value,
           tm = $("co-time").value;
         const tt = orderTotals(items);
-        DB.orderNo++;
-        const o = { no: "KB-" + DB.orderNo, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, phone, items };
-        if (!DB.accounts[phone]) DB.accounts[phone] = { phone, name, points: 0, stamps: 0, orders: [] };
-        const a = DB.accounts[phone];
-        if (!a.name) a.name = name;
-        a.orders.unshift(o);
         const pts = Math.round(tt.tot);
-        a.points += pts;
-        a.stamps = Math.min(8, a.stamps + 1);
-        if (!DB.session) DB.session = phone;
-        saveDB();
+        let o;
+        if (REMOTE()) {
+          if (!acct() || acct().phone !== phone) {
+            toast(i.acc_verify_first);
+            loginModal();
+            setTimeout(() => { const el = $("lg-phone"); if (el) el.value = fmtPhone(phone); }, 60);
+            return;
+          }
+          const { data, error } = await sb.rpc("place_order", { p_items: items, p_name: name, p_type: type, p_when: dt + " · " + tm, p_total: Math.round(tt.tot * 100) / 100 });
+          if (error) { toast("⚠ " + error.message); return; }
+          await syncFromRemote(phone);
+          o = DB.accounts[phone].orders[0] || { no: data, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, phone, items };
+        } else {
+          DB.orderNo++;
+          o = { no: "KB-" + DB.orderNo, when: dt + " · " + tm, type, status: type === "pre" ? "prep" : "ready", name, phone, items };
+          if (!DB.accounts[phone]) DB.accounts[phone] = { phone, name, points: 0, stamps: 0, orders: [] };
+          const a = DB.accounts[phone];
+          if (!a.name) a.name = name;
+          a.orders.unshift(o);
+          a.points += pts;
+          a.stamps = Math.min(8, a.stamps + 1);
+          if (!DB.session) DB.session = phone;
+          saveDB();
+        }
         S.cart = {};
         closeAll();
         render();
@@ -3853,6 +3936,22 @@
         if (e.key === "Escape") closeAll();
       });
       render();
+      (async function initRemote() {
+        if (!REMOTE()) return;
+        try {
+          const { data } = await sb.auth.getSession();
+          const ph = data && data.session && data.session.user && data.session.user.phone;
+          if (ph) {
+            const p = normPhone(ph);
+            DB.session = p;
+            await syncFromRemote(p);
+            render();
+          } else {
+            DB.session = null;
+            render();
+          }
+        } catch (e) {}
+      })();
     </script>
   </body>
 </html>
