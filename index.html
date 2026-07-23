@@ -2304,6 +2304,17 @@
         .ribbon .track { animation: none; }
         .prod .img > img, .who .w-photo img { transition: none; }
       }
+      .brain-md {
+        margin-top: 16px;
+        border: 1px solid var(--line2);
+        border-left: 3px solid var(--red);
+        padding: 16px 18px;
+        font-size: 13.5px;
+        line-height: 1.75;
+        color: var(--text);
+        background: var(--panel2);
+      }
+      .brain-md b { color: var(--red); }
       .adm-stats {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -2941,6 +2952,15 @@
           adm_col_rev: "Ingresos",
           adm_receipts: "Recibos por teléfono",
           adm_loading: "Cargando datos de la tienda…",
+          brain_title: "Cerebro Karbón",
+          brain_sub: "Claude analiza las ventas reales: qué se mueve, qué surtir esta semana, qué no se mueve y la jugada de mayor impacto.",
+          brain_run: "Analizar con Claude",
+          brain_thinking: "Analizando las ventas de la tienda…",
+          brain_top: "Lo que más se mueve",
+          brain_restock: "surtir",
+          brain_dead: "Sin movimiento",
+          brain_demo_note: "Análisis local por reglas (modo demo). Con el backend + la función claude-brain desplegada, este botón usa IA real sobre todas las ventas.",
+          brain_deploy_hint: "¿Ya desplegaste la función claude-brain en Supabase? Ver 05 backend/SETUP-CLAUDE-BRAIN.md",
           acc_verify_first: "Primero verifica tu número con el código SMS — tus puntos van a esa cuenta.",
           ribbon: "Res <b>·</b> Mariscos <b>·</b> Pollo <b>·</b> Leña & Carbón <b>·</b> Packs Parrilleros <b>·</b> Klub Karbón <b>·</b> Producto altamente adictivo <b>·</b> ",
           hero_cta1: "Ver catálogo",
@@ -3162,6 +3182,15 @@
           adm_col_rev: "Revenue",
           adm_receipts: "Receipts by phone",
           adm_loading: "Loading store data…",
+          brain_title: "Karbón Brain",
+          brain_sub: "Claude analyzes real sales: what moves, what to restock this week, what does not move, and the highest-impact play.",
+          brain_run: "Analyze with Claude",
+          brain_thinking: "Analyzing store sales…",
+          brain_top: "Top movers",
+          brain_restock: "restock",
+          brain_dead: "No movement",
+          brain_demo_note: "Local rule-based analysis (demo mode). With the backend + claude-brain function deployed, this button uses real AI on all sales.",
+          brain_deploy_hint: "Did you deploy the claude-brain function in Supabase? See 05 backend/SETUP-CLAUDE-BRAIN.md",
           acc_verify_first: "First verify your number with the SMS code — your points go to that account.",
           ribbon: "Beef <b>·</b> Seafood <b>·</b> Poultry <b>·</b> Wood & Charcoal <b>·</b> Grill Packs <b>·</b> Klub Karbón <b>·</b> Highly addictive product <b>·</b> ",
           hero_cta1: "Browse catalog",
@@ -3579,7 +3608,13 @@
          <div class="stat"><b>${custs}</b><span>${i.adm_customers}</span></div>
          <div class="stat"><b>${totalUnits}</b><span>${i.adm_units}</span></div>
        </div>
-       <div class="section-head" style="margin-top:26px"><div><h2 style="font-size:22px">${i.adm_products}</h2></div></div>
+       <div class="section-head" style="margin-top:26px"><div><h2 style="font-size:22px">${i.brain_title}</h2></div></div>
+       <div class="card" style="padding:20px 22px">
+         <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px">${i.brain_sub}</p>
+         <button class="btn btn-r" onclick="runBrain()">${i.brain_run} →</button>
+         <div id="brainout"></div>
+       </div>
+       <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:22px">${i.adm_products}</h2></div></div>
        <table class="adm"><tr><th>${i.adm_col_prod}</th><th class="tr">${i.adm_col_units}</th><th class="tr">${i.adm_col_rev}</th></tr>${rows.map((r) => `<tr><td>${r.name}</td><td class="tr">${r.u}</td><td class="tr">${money(r.r)}</td></tr>`).join("")}</table>
        <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:22px">${i.adm_receipts}</h2></div></div>
        <table class="adm"><tr><th>${i.inv_no}</th><th>${i.acc_phone}</th><th>${i.inv_date}</th><th class="tr">${i.total}</th><th></th></tr>${all.map((o, ix) => `<tr><td><b>${o.no}</b>${o.demo ? ` <span class="chip">${i.demo}</span>` : ""}</td><td>${fmtPhone(o.phone)}</td><td style="color:var(--muted)">${o.when}</td><td class="tr"><b>${money(orderTotals(o.items).tot)}</b></td><td class="tr"><button class="btn btn-s" style="padding:6px 12px;font-size:11px" onclick="showInvoice(ADMALL[${ix}])">${i.viewinv}</button></td></tr>`).join("")}</table>`
@@ -3608,6 +3643,40 @@
         ADMALL = [];
         Object.values(DB.accounts).forEach((a) => a.orders.forEach((o) => ADMALL.push({ ...o, phone: a.phone })));
         ADMALL.sort((x, y) => (x.no < y.no ? 1 : -1));
+      }
+      async function runBrain() {
+        const i = t();
+        const out = $("brainout");
+        if (!out) return;
+        out.innerHTML = `<div style="color:var(--muted);padding:16px 0 4px;font-size:13.5px">${i.brain_thinking}</div>`;
+        if (REMOTE()) {
+          try {
+            const { data, error } = await sb.functions.invoke("claude-brain", { body: {} });
+            if (error) throw error;
+            if (data && data.error) throw new Error(data.error);
+            out.innerHTML = `<div class="brain-md">${mdLite(data.analysis)}</div>`;
+          } catch (e) {
+            out.innerHTML = `<div class="brain-md" style="border-color:var(--red)">⚠ ${esc(e.message || String(e))}<br><span style="color:var(--dim);font-size:12px">${i.brain_deploy_hint}</span></div>`;
+          }
+        } else {
+          setTimeout(() => (out.innerHTML = localBrain()), 500);
+        }
+      }
+      function mdLite(txt) {
+        return esc(String(txt || ""))
+          .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+          .replace(/^- /gm, "• ")
+          .replace(/\n/g, "<br>");
+      }
+      function localBrain() {
+        const i = t();
+        refreshAdmAll();
+        const units = {}, rev = {};
+        ADMALL.forEach((o) => o.items.forEach(([id, q]) => { units[id] = (units[id] || 0) + q; rev[id] = (rev[id] || 0) + pprice(P(id)) * q; }));
+        const rows = Object.keys(units).map((id) => ({ n: pname(P(id)), u: units[id], r: rev[id] })).sort((a, b) => b.u - a.u);
+        const movers = rows.slice(0, 3);
+        const dead = PRODUCTS.filter((p) => !units[p.id] && p.cat !== "merch").slice(0, 5);
+        return `<div class="brain-md"><b>${i.brain_top}</b><br>${movers.map((m) => `• ${m.n} — ${m.u} u. · ${money(m.r)} → <b>${i.brain_restock}</b>`).join("<br>")}${dead.length ? `<br><br><b>${i.brain_dead}</b><br>${dead.map((p) => `• ${pname(p)}`).join("<br>")}` : ""}<br><br><span style="color:var(--dim);font-size:12px">${i.brain_demo_note}</span></div>`;
       }
       function revealInit() {
         if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
