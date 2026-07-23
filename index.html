@@ -2152,6 +2152,82 @@
       .x:hover { color: var(--text); }
       .empty { color: var(--muted); }
       .stampc { border-radius: 0; }
+      /* narrative sections */
+      .who {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 40px;
+        align-items: center;
+        margin-top: 64px;
+      }
+      .who .w-photo {
+        border-radius: 0;
+        overflow: hidden;
+        height: 420px;
+        background: #f2f1ef;
+      }
+      .who .w-photo img { width: 100%; height: 100%; object-fit: cover; }
+      .who h2 { font-size: 34px; }
+      .who .w-txt { color: var(--muted); font-size: 15.5px; line-height: 1.75; margin-top: 12px; }
+      .ps {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 22px;
+        border-top: 1px solid var(--line);
+      }
+      .ps .p-col { padding: 18px 22px 4px 0; }
+      .ps .p-col + .p-col { border-left: 1px solid var(--line); padding-left: 22px; }
+      .ps h4 {
+        font-family: var(--disp2);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 13px;
+        color: var(--red);
+        margin-bottom: 6px;
+      }
+      .ps p { color: var(--muted); font-size: 13.5px; line-height: 1.65; }
+      .shop-head { margin-top: 70px; text-align: center; }
+      .shop-head h2 { font-size: 34px; }
+      .shop-head .sub { margin-top: 4px; }
+      .klub {
+        margin-top: 70px;
+        background: #101010;
+        padding: 54px 44px;
+        text-align: center;
+      }
+      .klub .eyebrow { color: #e5c48b; }
+      .klub h2 { color: #fff; font-size: 38px; }
+      .klub .sub { color: #b9b7b2; margin-top: 6px; }
+      .klub .kb {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        max-width: 980px;
+        margin: 34px auto 0;
+        text-align: left;
+      }
+      .klub .kb .b {
+        border-top: 2px solid var(--red);
+        padding-top: 14px;
+      }
+      .klub .kb h4 {
+        font-family: var(--disp2);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #fff;
+        font-size: 16px;
+      }
+      .klub .kb p { color: #b9b7b2; font-size: 13.5px; line-height: 1.6; margin-top: 6px; }
+      .klub .btn { margin-top: 34px; padding: 15px 30px; }
+      @media (max-width: 900px) {
+        .who { grid-template-columns: 1fr; gap: 22px; }
+        .who .w-photo { height: 280px; }
+        .ps { grid-template-columns: 1fr; }
+        .ps .p-col + .p-col { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 18px; margin-top: 8px; }
+        .klub { padding: 40px 22px; }
+        .klub .kb { grid-template-columns: 1fr; }
+      }
       .wa-float { border-radius: 50%; }
       @media (max-width: 900px) {
         .store { grid-template-columns: 1fr; }
@@ -2596,7 +2672,7 @@
       /* ================= I18N ================= */ const T = {
         es: {
           brandtag: "BY: MAK MEATS <b>AND</b> SEAFOOD",
-          top: { club: "Club Karbón", recipes: "Recetas", planner: "Planificador", orders: "Mis pedidos", store: "Nuestra tienda" },
+          top: { club: "Klub Karbón", recipes: "Recetas", planner: "Planificador", orders: "Mis pedidos", store: "Nuestra tienda" },
           cats: { all: "Todo", res: "Res", cerdo: "Cerdo", pollo: "Pollo", mariscos: "Mariscos", emb: "Embutidos", lena: "Leña & Carbón", pack: "Packs Parrilleros", merch: "Merch", ofertas: "Ofertas" },
           search_ph: "¿Qué corte buscas hoy?",
           h_loy: "Lealtad",
@@ -2616,6 +2692,25 @@
           hero_ship: "Pedidos por WhatsApp · Factura digital al instante",
           feat_title: "Los favoritos del fuego",
           feat_cta: "Ver todo el catálogo",
+          who_eyebrow: "Quiénes somos",
+          who_t: "Somos la boutique del fuego",
+          who_txt:
+            "Karbón, by MAK Meats & Seafood, es un grill market premium en San Salvador: carnes de maestro carnicero, mariscos del Pacífico, leñas de humo y todo lo que exige el ritual del asado — presentado con estética de boutique, no de supermercado.",
+          prob_t: "El problema",
+          prob_txt: "Comprar para el asado era un mandado más: filas, neveras sin criterio y carbón de cualquier bolsa. La parrilla empezaba con desgano.",
+          sol_t: "Lo que cambiamos",
+          sol_txt: "Convertimos la compra en la parte más inspiradora de la parrillada. Un solo lugar, curado por expertos: el corte exacto, el humo correcto y el fuego que merece tu domingo.",
+          shop_t: "Lo que vendemos",
+          shop_sub: "Todo el ritual, en cuatro pasillos.",
+          klub_eyebrow: "Lealtad",
+          klub_t: "Klub Karbón",
+          klub_sub: "Tu tarjeta vive en tu teléfono. Cada compra alimenta el fuego.",
+          klub_b: [
+            ["1 punto por $1", "Cada dólar en compras suma. Al llegar a 200 puntos, canjeas $10 de descuento."],
+            ["8 sellos = chorizo gratis", "Cada pedido suma un sello. Al completar la tarjeta, 1 lb de chorizo artesanal por cuenta de la casa."],
+            ["Sin tarjetas físicas", "Muestra el código en caja o úsala al pedir en línea. Sin plástico, sin olvidos."],
+          ],
+          klub_cta: "Ver mi tarjeta Klub",
           hero_cta1: "Ver catálogo",
           hero_cta2: "Hacer pre-orden",
           promo1_t: "Especialistas en cortes premium",
@@ -2683,7 +2778,7 @@
           reorder: "Volver a pedir",
           viewinv: "Ver factura",
           items: "artículos",
-          loy_title: "Club Karbón · Tarjeta de lealtad",
+          loy_title: "Klub Karbón · Tarjeta de lealtad",
           loy_sub: "Tu tarjeta vive en tu teléfono. Muestra el código en caja o úsala al pedir en línea.",
           loy_member: "MIEMBRO",
           loy_pts: "puntos",
@@ -2757,7 +2852,7 @@
         },
         en: {
           brandtag: "BY: MAK MEATS <b>AND</b> SEAFOOD",
-          top: { club: "Karbón Club", recipes: "Recipes", planner: "Meal planner", orders: "My orders", store: "Our store" },
+          top: { club: "Klub Karbón", recipes: "Recipes", planner: "Meal planner", orders: "My orders", store: "Our store" },
           cats: { all: "All", res: "Beef", cerdo: "Pork", pollo: "Chicken", mariscos: "Seafood", emb: "Sausages", lena: "Wood & Charcoal", pack: "Grill Packs", merch: "Merch", ofertas: "Offers" },
           search_ph: "What cut are you looking for?",
           h_loy: "Loyalty",
@@ -2777,6 +2872,25 @@
           hero_ship: "WhatsApp ordering · Instant digital invoice",
           feat_title: "Favorites of the fire",
           feat_cta: "View the full catalog",
+          who_eyebrow: "Who we are",
+          who_t: "We are the boutique of fire",
+          who_txt:
+            "Karbón, by MAK Meats & Seafood, is a premium grill market in San Salvador: master-butcher meats, Pacific seafood, smoking woods and everything the asado ritual demands — presented with the aesthetic of a boutique, not a supermarket.",
+          prob_t: "The problem",
+          prob_txt: "Shopping for the barbecue was just another errand: lines, careless coolers and charcoal from whatever bag. The grill started uninspired.",
+          sol_t: "What we changed",
+          sol_txt: "We made the shopping the most inspiring part of the barbecue. One place, curated by experts: the exact cut, the right smoke and the fire your Sunday deserves.",
+          shop_t: "What we sell",
+          shop_sub: "The whole ritual, in four aisles.",
+          klub_eyebrow: "Loyalty",
+          klub_t: "Klub Karbón",
+          klub_sub: "Your card lives on your phone. Every purchase feeds the fire.",
+          klub_b: [
+            ["1 point per $1", "Every dollar adds up. At 200 points you redeem $10 off."],
+            ["8 stamps = free chorizo", "Every order adds a stamp. Complete the card and 1 lb of artisan chorizo is on the house."],
+            ["No plastic cards", "Show the code at the counter or use it ordering online. No plastic, nothing to forget."],
+          ],
+          klub_cta: "See my Klub card",
           hero_cta1: "Browse catalog",
           hero_cta2: "Place a pre-order",
           promo1_t: "Premium cut specialists",
@@ -2844,7 +2958,7 @@
           reorder: "Reorder",
           viewinv: "View invoice",
           items: "items",
-          loy_title: "Karbón Club · Loyalty card",
+          loy_title: "Klub Karbón · Loyalty card",
           loy_sub: "Your card lives on your phone. Show the code at checkout or use it ordering online.",
           loy_member: "MEMBER",
           loy_pts: "points",
@@ -3075,7 +3189,7 @@
       };
       function vHome() {
         const i = t();
-        return `   <div class="herowrap">     <section class="hero">       <img class="hbg" src="${HERO_PHOTO}" alt="" onerror="this.remove()">       <div class="hshade"></div>       <div class="hin">         <span class="pill">${i.hero_eyebrow}</span>         <h1>${i.hero_t1}<span class="l2b">${i.hero_t2}</span></h1>         <div class="subcaps">${i.hero_subcaps}</div>         <div class="props">${i.hero_props.map((pp) => `<div class="pr">${ICO[pp[0]] || ""}<span>${pp[1]}</span></div>`).join("")}</div>         <div class="ship">${i.hero_ship}</div>         <div class="cta">           <button class="btn btn-r" onclick="go('catalog')">${i.hero_cta1}</button>           <button class="btn btn-g" onclick="go('catalog')">${i.hero_cta2}</button>         </div>       </div>     </section>     <section class="featured">       <div class="section-head"><div><h2>${i.feat_title}</h2></div></div>       <div class="grid products">${["ribeye", "puyazo", "camaron", "carbonencino"].map((id) => prodCard(P(id))).join("")}</div>       <div class="feat-cta"><button class="btn btn-r" onclick="go('catalog')">${i.feat_cta}</button></div>     </section>     <div class="promos">       <div class="promo p1" onclick="setCat('res')">         <div class="pimg"><img src="${P("ribeye").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo1_t}</h3><p>${i.promo1_s}</p></div>       </div>       <div class="promo p2" onclick="setCat('lena')">         <div class="pimg"><img src="${P("carbonencino").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo2_t}</h3><p>${i.promo2_s}</p></div>       </div>     </div>   </div>   ${storeBox()}   ${newsBox()}`;
+        return `   <div class="herowrap">     <section class="hero">       <img class="hbg" src="${HERO_PHOTO}" alt="" onerror="this.remove()">       <div class="hshade"></div>       <div class="hin">         <span class="pill">${i.hero_eyebrow}</span>         <h1>${i.hero_t1}<span class="l2b">${i.hero_t2}</span></h1>         <div class="subcaps">${i.hero_subcaps}</div>         <div class="ship">${i.hero_ship}</div>         <div class="cta">           <button class="btn btn-r" onclick="go('catalog')">${i.hero_cta1}</button>           <button class="btn btn-g" onclick="go('home','store')">${i.top.store}</button>         </div>       </div>     </section>   </div>   <section class="who">     <div>       <div class="eyebrow">${i.who_eyebrow}</div>       <h2>${i.who_t}</h2>       <p class="w-txt">${i.who_txt}</p>       <div class="ps">         <div class="p-col"><h4>${i.prob_t}</h4><p>${i.prob_txt}</p></div>         <div class="p-col"><h4>${i.sol_t}</h4><p>${i.sol_txt}</p></div>       </div>     </div>     <div class="w-photo"><img src="img/fachada.jpg" alt="KARBÓN" loading="lazy" onerror="this.onerror=null;this.src=STORE_PHOTO;"></div>   </section>   <div class="shop-head"><h2>${i.shop_t}</h2><p class="sub">${i.shop_sub}</p></div>   <div class="promos">       <div class="promo p1" onclick="setCat('res')">         <div class="pimg"><img src="${P("ribeye").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo1_t}</h3><p>${i.promo1_s}</p></div>       </div>       <div class="promo p2" onclick="setCat('lena')">         <div class="pimg"><img src="${P("carbonencino").photo}" alt="" loading="lazy" onerror="this.parentElement.remove()"></div>         <div class="pbd"><h3>${i.promo2_t}</h3><p>${i.promo2_s}</p></div>       </div>     </div>   <section class="featured">     <div class="section-head"><div><h2>${i.feat_title}</h2></div></div>     <div class="grid products">${["ribeye", "puyazo", "camaron", "carbonencino"].map((id) => prodCard(P(id))).join("")}</div>     <div class="feat-cta"><button class="btn btn-r" onclick="go('catalog')">${i.feat_cta}</button></div>   </section>   <section class="klub">     <div class="eyebrow">${i.klub_eyebrow}</div>     <h2>${i.klub_t}</h2>     <p class="sub">${i.klub_sub}</p>     <div class="kb">${i.klub_b.map((b) => `<div class="b"><h4>${b[0]}</h4><p>${b[1]}</p></div>`).join("")}</div>     <button class="btn btn-r" onclick="go('loyalty')">${i.klub_cta}</button>   </section>   ${storeBox()}   ${newsBox()}`;
       }
       function storeBox() {
         const i = t();
@@ -3087,8 +3201,6 @@
             <h2 style="font-family:var(--disp);text-transform:uppercase;letter-spacing:.05em">${i.store_title}</h2>
             <p class="sub" style="margin-top:6px">${i.store_sub}</p>
             <div class="s-photo"><img src="img/fachada.jpg" alt="KARBÓN by MAK Meats & Seafood" loading="lazy" onerror="this.onerror=null;this.src=STORE_PHOTO;"></div>
-            <h3 style="margin-top:22px;font-size:15.5px">${i.store_story_t}</h3>
-            <p class="s-story">${i.store_story}</p>
             <a class="s-map" href="https://www.google.com/maps/search/?api=1&query=San+Salvador,+El+Salvador" target="_blank" rel="noopener">${i.store_map} →</a>
           </div>
           <div class="card">
